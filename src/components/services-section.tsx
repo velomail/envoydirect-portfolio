@@ -1,4 +1,13 @@
 import { Boxes, Gauge, Workflow } from "lucide-react";
+import {
+  cardShell,
+  mobileStackCenter,
+  sectionEyebrow,
+  sectionHeading,
+  sectionPadding,
+  sectionShell,
+  sectionTitle,
+} from "@/lib/layout-classes";
 import { services } from "@/lib/site-config";
 
 const icons = {
@@ -9,27 +18,39 @@ const icons = {
 
 export function ServicesSection() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-      <div className="mb-12">
-        <p className="font-mono text-xs uppercase tracking-widest text-accent-neon">// Freelance Funnel</p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+    <section
+      aria-labelledby="services-heading"
+      className={`${sectionShell} ${sectionPadding}`}
+    >
+      <div className={sectionHeading}>
+        <p className={sectionEyebrow}>// Freelance Funnel</p>
+        <h2 id="services-heading" className={sectionTitle}>
           Available Commercial Services
         </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-pretty text-sm leading-7 text-muted-foreground md:mx-0">
+          Hire EnvoyDirect for startup MVP development, automation consulting, and product
+          marketing sites optimized for search and conversion.
+        </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-5 sm:gap-6 md:grid-cols-3">
         {services.map((service) => {
           const Icon = icons[service.icon];
           return (
             <article
               key={service.title}
-              className="group flex flex-col rounded-2xl border border-glass-border glass-panel p-6 transition-all duration-300 hover:border-accent-neon/30 hover:bg-foreground/[0.02]"
+              className={`${cardShell} group ${mobileStackCenter} transition-all duration-300 hover:border-accent-neon/30 hover:bg-foreground/[0.02] md:items-start md:text-left`}
             >
-              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-glass-border bg-accent-neon/10 transition-colors group-hover:bg-accent-neon/20">
-                <Icon className="h-5 w-5 text-accent-neon" aria-hidden="true" />
+              <div
+                className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-glass-border bg-accent-neon/10 transition-colors group-hover:bg-accent-neon/20 sm:mb-5"
+                aria-hidden="true"
+              >
+                <Icon className="h-5 w-5 text-accent-neon" />
               </div>
-              <h3 className="text-lg font-medium tracking-tight text-foreground">{service.title}</h3>
-              <p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+              <h3 className="text-lg font-medium leading-7 tracking-tight text-foreground">
+                {service.title}
+              </h3>
+              <p className="mt-3 text-pretty text-sm leading-7 text-muted-foreground">
                 {service.description}
               </p>
             </article>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { focusRing } from "@/lib/layout-classes";
 import { siteConfig } from "@/lib/site-config";
 
 export function CopyEmailButton() {
@@ -31,16 +32,17 @@ export function CopyEmailButton() {
   return (
     <button
       type="button"
-      aria-label="Copy email address"
+      aria-label={copied ? "Email copied to clipboard" : "Copy email address to clipboard"}
+      aria-live="polite"
       onClick={handleCopy}
-      className="inline-flex items-center gap-2 rounded-lg border border-glass-border bg-background/40 px-3 py-1.5 font-mono text-xs tracking-tight text-foreground transition-colors hover:border-accent-neon/40 hover:bg-accent-neon/10"
+      className={`inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg border border-glass-border bg-background/40 px-4 py-2.5 font-mono text-xs tracking-tight text-foreground transition-colors hover:border-accent-neon/40 hover:bg-accent-neon/10 ${focusRing}`}
     >
       {copied ? (
-        <Check className="h-3.5 w-3.5 text-status-green" aria-hidden="true" />
+        <Check className="h-4 w-4 text-status-green" aria-hidden="true" />
       ) : (
-        <Copy className="h-3.5 w-3.5" aria-hidden="true" />
+        <Copy className="h-4 w-4" aria-hidden="true" />
       )}
-      {copied ? "Copied" : "Copy"}
+      <span>{copied ? "Copied" : "Copy"}</span>
     </button>
   );
 }

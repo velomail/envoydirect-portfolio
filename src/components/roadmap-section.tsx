@@ -1,4 +1,13 @@
 import { CircleDot, Clock, Telescope, Terminal } from "lucide-react";
+import {
+  cardShell,
+  mobileStackCenter,
+  sectionEyebrow,
+  sectionHeading,
+  sectionPadding,
+  sectionShell,
+  sectionTitle,
+} from "@/lib/layout-classes";
 import { roadmapPhases } from "@/lib/site-config";
 
 const phaseIcons = {
@@ -9,39 +18,42 @@ const phaseIcons = {
 
 export function RoadmapSection() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-      <div className="mb-12">
-        <p className="font-mono text-xs uppercase tracking-widest text-accent-neon">// The Blueprint Log</p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+    <section
+      aria-labelledby="roadmap-heading"
+      className={`${sectionShell} ${sectionPadding}`}
+    >
+      <div className={sectionHeading}>
+        <p className={sectionEyebrow}>// The Blueprint Log</p>
+        <h2 id="roadmap-heading" className={sectionTitle}>
           Roadmap & Infrastructure Sprint
         </h2>
       </div>
 
-      <div className="overflow-hidden rounded-2xl border border-glass-border glass-panel">
-        <div className="flex items-center gap-2 border-b border-glass-border px-5 py-3">
+      <div className={`${cardShell} overflow-hidden p-0`}>
+        <div className="flex items-center justify-center gap-2 border-b border-glass-border px-4 py-3 sm:justify-start sm:px-5">
           <Terminal className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
           <span className="font-mono text-xs tracking-tight text-muted-foreground">
             roadmap.log — architectural goals
           </span>
         </div>
 
-        <ul className="divide-y divide-glass-border">
+        <ol className="divide-y divide-glass-border">
           {roadmapPhases.map((phase) => {
             const Icon = phaseIcons[phase.tone];
             const statusClass =
               phase.tone === "active"
                 ? "text-accent-neon"
                 : phase.tone === "horizon"
-                  ? "text-muted-foreground/70"
+                  ? "text-muted-foreground/80"
                   : "text-muted-foreground";
 
             return (
               <li
                 key={phase.phase}
-                className="group flex flex-col gap-3 px-5 py-6 transition-colors hover:bg-foreground/[0.02] md:flex-row md:gap-6 md:px-6"
+                className={`${mobileStackCenter} gap-3 px-4 py-5 transition-colors hover:bg-foreground/[0.02] sm:px-6 sm:py-6 md:flex-row md:items-start md:gap-6 md:text-left`}
               >
-                <div className="flex shrink-0 items-center gap-3 md:w-64">
-                  <span className="relative flex h-2.5 w-2.5 items-center justify-center">
+                <div className="flex shrink-0 items-center gap-3 md:w-64 md:justify-start">
+                  <span className="relative flex h-2.5 w-2.5 items-center justify-center" aria-hidden="true">
                     {phase.tone === "active" ? (
                       <span className="neon-ping absolute inline-flex h-2 w-2 rounded-full bg-accent-neon" />
                     ) : null}
@@ -49,7 +61,6 @@ export function RoadmapSection() {
                       className={`h-3.5 w-3.5 ${
                         phase.tone === "active" ? "text-accent-neon" : "text-muted-foreground"
                       }`}
-                      aria-hidden="true"
                     />
                   </span>
                   <span className="font-mono text-sm tracking-tight text-foreground">
@@ -57,13 +68,13 @@ export function RoadmapSection() {
                     <span className={statusClass}>// {phase.status}</span>
                   </span>
                 </div>
-                <p className="text-pretty text-sm leading-relaxed text-muted-foreground">
+                <p className="max-w-prose text-pretty text-sm leading-7 text-muted-foreground">
                   {phase.description}
                 </p>
               </li>
             );
           })}
-        </ul>
+        </ol>
       </div>
     </section>
   );

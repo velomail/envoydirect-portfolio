@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { siteConfig } from "@/lib/site-config";
 
 function formatEstClock(date: Date) {
-  return new Intl.DateTimeFormat("en-US", {
-    timeZone: "America/Toronto",
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: siteConfig.timezone,
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
@@ -23,8 +24,10 @@ export function LiveClock() {
   }, []);
 
   return (
-    <p className="font-mono text-[11px] tracking-tight text-muted-foreground">
-      LOC // ONTARIO, CA • EST // {time ?? "24H_CLOCK_FORMAT"}
+    <p className="font-mono text-[11px] leading-5 tracking-tight text-muted-foreground">
+      <span className="sr-only">Location and current Eastern Time: </span>
+      LOC // {siteConfig.locationShort} • EST //{" "}
+      <time suppressHydrationWarning>{time ?? "Loading time"}</time>
     </p>
   );
 }
