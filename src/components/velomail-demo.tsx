@@ -12,14 +12,14 @@ export function VeloMailDemo() {
       <fieldset className="mb-4 flex flex-col gap-3 border-0 p-0">
         <legend
           id={`${groupId}-legend`}
-          className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground sm:tracking-widest"
+          className="w-full text-center font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground sm:text-left sm:tracking-widest"
         >
           Viewport Mode
         </legend>
         <div
           role="radiogroup"
           aria-labelledby={`${groupId}-legend`}
-          className="flex flex-wrap justify-center gap-3 sm:justify-start"
+          className="flex flex-col gap-3"
         >
           {(["desktop", "mobile"] as const).map((option) => {
             const active = mode === option;
@@ -30,21 +30,21 @@ export function VeloMailDemo() {
                 role="radio"
                 aria-checked={active}
                 onClick={() => setMode(option)}
-                className={`flex min-h-11 items-center gap-2 rounded-lg px-2 font-mono text-xs capitalize text-foreground ${focusRing}`}
+                className={`flex min-h-11 w-full items-center justify-center gap-4 rounded-lg px-1 font-mono text-xs capitalize text-foreground sm:justify-start ${focusRing}`}
               >
                 <span
                   aria-hidden="true"
-                  className={`relative h-[26px] w-[52px] rounded-full border border-glass-border transition-colors ${
+                  className={`relative h-[26px] w-[52px] shrink-0 overflow-hidden rounded-full border border-glass-border transition-colors ${
                     active ? "bg-accent-neon/20" : "bg-background/80"
                   }`}
                 >
                   <span
-                    className={`absolute top-[3px] h-[18px] w-[18px] rounded-full bg-accent-neon transition-transform ${
-                      active ? "translate-x-[26px]" : "translate-x-[3px]"
+                    className={`absolute top-[3px] left-[3px] h-[18px] w-[18px] rounded-full bg-accent-neon transition-transform duration-200 ${
+                      active ? "translate-x-[28px]" : "translate-x-0"
                     }`}
                   />
                 </span>
-                {option}
+                <span className="min-w-[4.5rem] text-left">{option}</span>
               </button>
             );
           })}

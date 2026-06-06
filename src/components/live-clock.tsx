@@ -24,7 +24,7 @@ export function LiveClock() {
   }, []);
 
   return (
-    <p className="font-mono text-[11px] leading-5 tracking-tight text-muted-foreground">
+    <p className="text-center font-mono text-[11px] leading-5 tracking-tight text-muted-foreground md:text-right">
       <span className="sr-only">Location and current Eastern Time: </span>
       LOC // {siteConfig.locationShort} • EST //{" "}
       <time suppressHydrationWarning>{time ?? "Loading time"}</time>
