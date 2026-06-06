@@ -30,21 +30,23 @@ export function VeloMailDemo() {
                 role="radio"
                 aria-checked={active}
                 onClick={() => setMode(option)}
-                className={`flex min-h-11 w-full items-center justify-center gap-4 rounded-lg px-1 font-mono text-xs capitalize text-foreground sm:justify-start ${focusRing}`}
+                className={`flex min-h-11 w-full items-center justify-center gap-3 rounded-lg px-1 font-mono text-xs capitalize text-foreground sm:justify-start ${focusRing}`}
               >
                 <span
                   aria-hidden="true"
                   className={`relative h-[26px] w-[52px] shrink-0 overflow-hidden rounded-full border border-glass-border transition-colors ${
-                    active ? "bg-accent-neon/20" : "bg-background/80"
+                    active ? "bg-foreground" : "bg-background/80"
                   }`}
                 >
                   <span
-                    className={`absolute top-[3px] left-[3px] h-[18px] w-[18px] rounded-full bg-accent-neon transition-transform duration-200 ${
-                      active ? "translate-x-[28px]" : "translate-x-0"
+                    className={`absolute top-[3px] left-[3px] h-[18px] w-[18px] rounded-full transition-transform ${
+                      active ? "translate-x-[26px] bg-background" : "translate-x-0 bg-foreground"
                     }`}
                   />
                 </span>
-                <span className="min-w-[4.5rem] text-left">{option}</span>
+                <span className={`min-w-[4.5rem] text-left ${active ? "font-medium" : ""}`}>
+                  {option}
+                </span>
               </button>
             );
           })}

@@ -6,7 +6,6 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import {
   mobileStackCenter,
-  sectionEyebrow,
   sectionPadding,
   sectionShell,
 } from "@/lib/layout-classes";
@@ -18,9 +17,6 @@ function HeroSection() {
       className={`${sectionShell} ${sectionPadding} pb-16 pt-20 sm:pb-20 sm:pt-24 md:pt-32`}
     >
       <div className={`mx-auto max-w-4xl ${mobileStackCenter}`}>
-        <p className={`mb-5 sm:mb-6 ${sectionEyebrow}`}>
-          EnvoyDirect // Umbrella studio for VeloMail, MetroRate & RadarAI
-        </p>
         <h1
           id="hero-heading"
           className="text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-left md:text-6xl lg:text-7xl"
@@ -28,9 +24,8 @@ function HeroSection() {
           Building high-performance digital utilities and functional design systems.
         </h1>
         <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-muted-foreground sm:mt-8 sm:text-lg md:text-left">
-          EnvoyDirect is the engineering umbrella behind a growing ecosystem of production software.
-          We help startups and revenue teams ship custom SaaS tools, workflow automation, and
-          conversion-focused product pages from Ontario, Canada.
+          EnvoyDirect builds production software for startups and revenue teams — custom SaaS
+          tools, workflow automation, and conversion-focused product pages from Ontario, Canada.
         </p>
         <p className="mt-4 max-w-2xl text-pretty text-sm leading-7 text-muted-foreground md:text-left">
           Available for freelance engagements: internal business utilities, API automation,
