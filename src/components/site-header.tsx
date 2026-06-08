@@ -1,40 +1,90 @@
-import { Navigation } from "lucide-react";
-import { LiveClock } from "@/components/live-clock";
-import { sectionShell } from "@/lib/layout-classes";
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import { siteConfig } from "@/lib/site-config";
+
+const navLinks = [
+  { label: "Software", href: "#software" },
+  { label: "Services", href: "#services" },
+  { label: "About", href: "#about" },
+] as const;
 
 export function SiteHeader() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-glass-border glass-panel">
-      <div className={`${sectionShell} flex flex-col items-center gap-3 py-4 text-center`}>
-        <div className="flex items-center justify-center gap-2.5">
-          <span
-            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-glass-border bg-accent-neon/10"
-            aria-hidden="true"
-          >
-            <Navigation className="h-3.5 w-3.5 text-accent-neon" />
-          </span>
-          <p className="font-mono text-sm font-semibold tracking-tight text-foreground sm:text-base">
-            ENVOYDIRECT
-          </p>
-        </div>
+  const [open, setOpen] = useState(false);
 
-        <div className="flex flex-col items-center gap-2">
-          <div
-            className="inline-flex max-w-full items-center gap-2 rounded-full border border-glass-border glass-panel px-3 py-1.5"
-            role="status"
-            aria-label="Availability status: open to custom client builds"
+  return (
+    <header className="border-b border-border/80 bg-cream/95 backdrop-blur-sm">
+      <div className="container-page grid h-[72px] grid-cols-[1fr_auto_1fr] items-center gap-4">
+        <Link href="/" className="shrink-0 text-sm font-bold tracking-[0.08em] text-ink">
+          {siteConfig.brand}
+        </Link>
+
+        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm text-body transition-colors hover:text-ink"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center justify-end gap-3">
+          <Link href="#contact" className="btn-orange hidden px-5 text-[13px] sm:inline-flex">
+            + Work with me
+          </Link>
+
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border md:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((value) => !value)}
           >
-            <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
-              <span className="status-ping absolute inline-flex h-2 w-2 rounded-full bg-status-green" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-status-green" />
+            <span className="sr-only">Menu</span>
+            <span className="flex flex-col gap-1">
+              <span className={`block h-px w-4 bg-ink transition ${open ? "translate-y-[5px] rotate-45" : ""}`} />
+              <span className={`block h-px w-4 bg-ink transition ${open ? "opacity-0" : ""}`} />
+              <span className={`block h-px w-4 bg-ink transition ${open ? "-translate-y-[5px] -rotate-45" : ""}`} />
             </span>
-            <span className="font-mono text-[11px] tracking-tight text-foreground sm:text-xs">
-              STATUS: OPEN TO CUSTOM CLIENT BUILDS
-            </span>
-          </div>
-          <LiveClock />
+          </button>
         </div>
       </div>
+
+      {open ? (
+        <nav
+          id="mobile-nav"
+          aria-label="Mobile"
+          className="border-t border-border px-5 py-4 md:hidden"
+        >
+          <ul className="flex flex-col gap-3">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="block py-2 text-sm text-body"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link
+                href="#contact"
+                className="btn-orange mt-2 w-full"
+                onClick={() => setOpen(false)}
+              >
+                + Work with me
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      ) : null}
     </header>
   );
 }

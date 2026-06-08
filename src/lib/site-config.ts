@@ -1,17 +1,16 @@
 export const siteConfig = {
-  name: "EnvoyDirect",
-  title: "EnvoyDirect // Software Architect & Strategist",
-  seoTitle:
-    "EnvoyDirect | Freelance Software Architect & SaaS Product Studio (Ontario)",
+  name: "Envoy Direct",
+  brand: "ENVOY DIRECT",
+  title: "Envoy Direct — Independent Developer Shipping High-Utility Software",
+  seoTitle: "Envoy Direct | Independent Software Developer & Product Studio",
   description:
-    "EnvoyDirect is the umbrella studio behind VeloMail, MetroRate, and RadarAI. Building high-performance digital utilities, secure pipeline automation, and conversion-focused front ends.",
+    "Envoy Direct is a one-person software lab building lean, functional utilities and high-performance interfaces for founders who value velocity over bureaucracy.",
   seoDescription:
-    "Hire EnvoyDirect for custom SaaS development, workflow automation, and product landing pages. Studio behind VeloMail, MetroRate & RadarAI. Based in Ontario, Canada.",
-  email: "contact@envoydirect.io",
+    "Independent developer building VeloMail, RadarAI, and MetroRate. Full-stack MVP development, workflow automation, and premium UI engineering from Ontario, Canada.",
+  email: "hello@envoydirect.co",
+  contactEmail: "hello@envoydirect.co",
   location: "Ontario, Canada",
-  locationShort: "ONTARIO, CA",
-  timezone: "America/Toronto",
-  url: "https://envoydirect-portfolio.vercel.app",
+  url: "https://envoydirect.co",
   founder: "Jesse Envoy",
   links: {
     github: "https://github.com/velomail",
@@ -22,158 +21,66 @@ export const siteConfig = {
   },
 } as const;
 
-export type Project = {
-  id: string;
-  number: string;
-  name: string;
-  slug: string;
-  status: string;
-  statusTone: "live" | "progress" | "development";
-  coreUtility: string;
-  functionalImpact: string;
-  seoDescription: string;
-  tags: string[];
-  demo: "radarai" | "velomail" | "metrorate";
-};
-
-export const projects: Project[] = [
+export const featuredProjects = [
   {
-    id: "01",
-    number: "01",
-    name: "RadarAI",
-    slug: "radarai",
-    status: "LIVE & DEPLOYED",
-    statusTone: "live",
-    coreUtility:
-      "A precision job-search aggregator and automated resume-matching engine designed to crawl, parse, and match candidates to active pipelines using custom semantic scoring vectors.",
-    functionalImpact:
-      "Reduces manual search overhead by programmatically aggregating target roles and auditing resume alignment instantly.",
-    seoDescription:
-      "RadarAI is an AI-powered job search and resume matching SaaS that automates candidate pipeline discovery for professionals and recruiters.",
-    tags: ["Next.js", "TailwindCSS", "LLM Vector Embedding API", "Node.js"],
-    demo: "radarai",
-  },
-  {
-    id: "02",
-    number: "02",
+    id: "velomail",
     name: "VeloMail",
-    slug: "velomail",
-    status: "PERFORMANCE OPTIMIZATION",
-    statusTone: "progress",
-    coreUtility:
-      "A real-time mobile email preview engine engineered to parse, validate, and preview responsive code layouts across disparate viewport footprints instantly.",
-    functionalImpact:
-      "Eliminates cross-client layout degradation for digital marketers, ensuring pixel-perfect compliance before pipeline dispatch.",
-    seoDescription:
-      "VeloMail is a browser email preview tool for marketers and sales teams who need mobile and desktop render QA before send.",
-    tags: ["TypeScript", "Web Rendering Engines", "Next.js API Routes"],
-    demo: "velomail",
+    tag: "STUDIO · V1",
+    description:
+      "A real-time email render preview engine. Parse, validate, and preview responsive code layouts across disparate viewport footprints instantly.",
+    href: "#software",
+    visual: "velomail" as const,
   },
   {
-    id: "03",
-    number: "03",
+    id: "radarai",
+    name: "RadarAI",
+    tag: "AGGREGATOR · BETA",
+    description:
+      "A precision job-search aggregator and automated resume-matching engine designed to crawl, parse, and match candidates to active pipelines.",
+    href: siteConfig.links.radarai,
+    visual: "radarai" as const,
+  },
+  {
+    id: "metrorate",
     name: "MetroRate",
-    slug: "metrorate",
-    status: "ACTIVE SPRINT DEVELOPMENT",
-    statusTone: "development",
-    coreUtility:
-      "An automated financial utility dashboard built for sales representatives to track custom commission structures, multi-tier quotas, and real-time performance analytics.",
-    functionalImpact:
-      "Provides granular financial forecasting and removes manual commission auditing bottlenecks through real-time data visualization.",
-    seoDescription:
-      "MetroRate is a sales commission calculator and payout forecasting dashboard built for B2B revenue teams.",
-    tags: ["React", "TailwindCSS", "Financial Data Streams", "Local Storage State"],
-    demo: "metrorate",
-  },
-];
-
-export const roadmapPhases = [
-  {
-    phase: "PHASE_01",
-    status: "ACTIVE",
-    tone: "active" as const,
+    tag: "DASHBOARD · LIVE",
     description:
-      "Deploying freelance capabilities across Upwork and Fiverr for custom application development, automation hooks, and high-conversion landing pages.",
-  },
-  {
-    phase: "PHASE_02",
-    status: "UPCOMING",
-    tone: "upcoming" as const,
-    description:
-      "Structuring advanced data dashboard frameworks, secure multi-tenant user authentication, and optimized state management systems for complex data utilities.",
-  },
-  {
-    phase: "PHASE_03",
-    status: "HORIZON",
-    tone: "horizon" as const,
-    description:
-      "Integrating machine learning APIs and advanced automated scrapers with large-scale data visualization pipelines and niche SaaS utilities.",
+      "An automated financial utility dashboard built for sales representatives to track custom commission structures and real-time performance analytics.",
+    href: "#software",
+    visual: "metrorate" as const,
   },
 ];
 
 export const services = [
   {
-    title: "Custom Web Utilities",
+    title: "Full-Stack MVP Development",
     description:
-      "Full-stack SaaS apps, internal operational tools, and tailored analytics dashboards wrapped in premium, minimalist glass UI tokens.",
-    icon: "boxes" as const,
+      "Fully functional, production-ready minimum viable products built from scratch at high speed — architected to scale the moment they ship.",
   },
   {
-    title: "Workflow Automation Pipelines",
+    title: "Agentic Workflow & API Automation",
     description:
-      "Secure API integration, custom web scrapers, data loops, and LLM orchestration to systematically eliminate manual corporate friction.",
-    icon: "workflow" as const,
+      "Automated backend pipelines, custom web scrapers, data-routing solutions, and AI-native tooling (n8n, custom orchestrators) that streamline business workflows end-to-end.",
   },
   {
-    title: "Data-Driven Front Ends",
+    title: "Premium UI/UX Engineering",
     description:
-      "Blazing fast front-end architectures optimized for software tools, startup product pages, and lightning-quick technical landing pages.",
-    icon: "gauge" as const,
+      "Translating complex application logic into fluid, polished, interactive, and fully responsive interfaces that feel as considered as they perform.",
   },
 ];
 
-export const faqItems = [
-  {
-    question: "What is EnvoyDirect?",
-    answer:
-      "EnvoyDirect is a software architecture studio and product umbrella based in Ontario, Canada. We design, build, and ship production-grade digital utilities for startups, sales teams, and enterprise operators — including VeloMail, MetroRate, and RadarAI.",
-  },
-  {
-    question: "What freelance development services does EnvoyDirect offer?",
-    answer:
-      "EnvoyDirect offers custom full-stack web development, workflow automation, API integrations, internal business tools, SaaS MVP builds, and high-conversion startup landing pages. Engagements are available through direct contact, Upwork, and Fiverr.",
-  },
-  {
-    question: "What is VeloMail and who is it for?",
-    answer:
-      "VeloMail is a real-time email render preview utility for marketers, sales reps, and email developers. It lets teams validate mobile and desktop layouts before sending, reducing broken renders across Gmail, Outlook, and Apple Mail.",
-  },
-  {
-    question: "What does MetroRate do for sales teams?",
-    answer:
-      "MetroRate is a commission calculation and payout forecasting tool for B2B sales representatives. It replaces spreadsheet math with live deal-size, split, rate, and tax inputs so reps can audit earnings instantly.",
-  },
-  {
-    question: "How does RadarAI help job seekers?",
-    answer:
-      "RadarAI aggregates active job listings, parses requirements, and scores resume alignment using semantic matching. It reduces manual search time by surfacing roles that fit a candidate's skills and experience profile.",
-  },
-  {
-    question: "How do I hire EnvoyDirect for a custom software project?",
-    answer:
-      "Email contact@envoydirect.io with your scope, timeline, and budget range. You can also connect via LinkedIn, Upwork, or Fiverr. Typical projects include SaaS MVPs, automation pipelines, and product marketing sites.",
-  },
+export const aboutParagraphs = [
+  "I run Envoy Direct as a fast-moving, one-person software studio. By leaning on modern AI-native tooling, rapid prototyping frameworks, and agile workflows, I build software in days rather than months — without the overhead, hand-offs, or theatre of a traditional agency.",
+  "My focus is entirely on shipping high-utility software and solving real technical problems: writing the architecture, building the product, wiring the automations, and getting it in front of users. If it ships and it's useful, it counts.",
 ];
 
 export const seoKeywords = [
-  "freelance software architect Ontario",
-  "custom SaaS development Canada",
-  "startup product studio",
+  "independent software developer",
+  "full-stack MVP development",
   "workflow automation developer",
-  "VeloMail email preview tool",
-  "MetroRate commission calculator",
-  "RadarAI job search automation",
-  "Next.js freelance developer",
-  "B2B internal tools development",
-  "high conversion landing page developer",
+  "VeloMail",
+  "RadarAI",
+  "MetroRate",
+  "Ontario freelance developer",
+  "AI-native software studio",
 ];

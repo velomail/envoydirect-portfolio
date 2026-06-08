@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Instrument_Serif, Inter } from "next/font/google";
 import { getStructuredData } from "@/lib/structured-data";
 import { seoKeywords, siteConfig } from "@/lib/site-config";
 import "./globals.css";
@@ -10,9 +10,10 @@ const inter = Inter({
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  weight: "400",
+  variable: "--font-instrument-serif",
   display: "swap",
 });
 
@@ -21,8 +22,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: "cover",
-  themeColor: "#050505",
-  colorScheme: "dark",
+  themeColor: "#fdfbf7",
+  colorScheme: "light",
 };
 
 export const metadata: Metadata = {
@@ -33,17 +34,9 @@ export const metadata: Metadata = {
   },
   description: siteConfig.seoDescription,
   applicationName: siteConfig.name,
-  generator: "Next.js",
   keywords: seoKeywords,
   authors: [{ name: siteConfig.founder, url: siteConfig.links.linkedin }],
   creator: siteConfig.founder,
-  publisher: siteConfig.name,
-  category: "technology",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
   openGraph: {
     type: "website",
     locale: "en_CA",
@@ -57,42 +50,22 @@ export const metadata: Metadata = {
     title: siteConfig.seoTitle,
     description: siteConfig.seoDescription,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: siteConfig.name,
-  },
-  alternates: {
-    canonical: siteConfig.url,
-  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: siteConfig.url },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const structuredData = getStructuredData();
-
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-CA" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en-CA" className={`${inter.variable} ${instrumentSerif.variable}`}>
+      <body>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getStructuredData()) }}
         />
         {children}
       </body>
