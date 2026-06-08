@@ -1,21 +1,25 @@
-import { AboutSection } from "@/components/about-section";
-import { ContactSection } from "@/components/contact-section";
-import { FeaturedSoftware } from "@/components/featured-software";
-import { HeroSection } from "@/components/hero-section";
-import { ServicesSection } from "@/components/services-section";
-import { SiteHeader } from "@/components/site-header";
+import { About } from "@/components/about";
+import { Contact } from "@/components/contact";
+import { Hero } from "@/components/hero";
+import { Process } from "@/components/process";
+import { Services } from "@/components/services";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteNav } from "@/components/site-nav";
+import { Work } from "@/components/work";
 
 export default function HomePage() {
   return (
     <>
-      <SiteHeader />
+      <SiteNav />
       <main id="main-content" tabIndex={-1}>
-        <HeroSection />
-        <FeaturedSoftware />
-        <ServicesSection />
-        <AboutSection />
-        <ContactSection />
+        <Hero />
+        <About />
+        <Services />
+        <Work />
+        <Process />
+        <Contact />
       </main>
+      <SiteFooter />
     </>
   );
 }

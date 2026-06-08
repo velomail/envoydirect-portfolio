@@ -24,10 +24,9 @@ export function getStructuredData() {
         url: siteConfig.links.linkedin,
       },
       sameAs: [
-        siteConfig.links.github,
         siteConfig.links.linkedin,
-        siteConfig.links.upwork,
         siteConfig.links.fiverr,
+        siteConfig.links.upwork,
       ],
     },
     {

@@ -17,17 +17,15 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#fdfbf7",
-          color: "#111111",
+          background: "#faf9f7",
+          color: "#1a2332",
         }}
       >
-        <div style={{ fontSize: 28, letterSpacing: "0.15em", color: "#ef6820", marginBottom: 24 }}>
-          ENVOY DIRECT
+        <div style={{ fontSize: 24, color: "#5c6678", marginBottom: 24 }}>{siteConfig.brand}</div>
+        <div style={{ fontSize: 56, fontWeight: 400, lineHeight: 1.1, maxWidth: 900, fontFamily: "serif" }}>
+          Software that ships.
         </div>
-        <div style={{ fontSize: 64, fontWeight: 400, lineHeight: 1.05, maxWidth: 900, fontFamily: "serif" }}>
-          Independent developer shipping high-utility software.
-        </div>
-        <div style={{ marginTop: 32, fontSize: 24, color: "#555555" }}>{siteConfig.description}</div>
+        <div style={{ marginTop: 28, fontSize: 22, color: "#5c6678" }}>{siteConfig.description}</div>
       </div>
     ),
     { ...size },

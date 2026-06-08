@@ -1,19 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader } from "next/font/google";
 import { getStructuredData } from "@/lib/structured-data";
 import { seoKeywords, siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-const inter = Inter({
+const geistSans = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist-sans",
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-instrument-serif",
+  variable: "--font-geist-mono",
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -22,7 +28,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: "cover",
-  themeColor: "#fdfbf7",
+  themeColor: "#faf9f7",
   colorScheme: "light",
 };
 
@@ -58,8 +64,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-CA" className={`${inter.variable} ${instrumentSerif.variable}`}>
-      <body>
+    <html
+      lang="en-CA"
+      className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} bg-background`}
+    >
+      <body className="font-sans antialiased">
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
