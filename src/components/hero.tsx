@@ -23,34 +23,34 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="top" className="relative overflow-hidden pb-20 pt-28 sm:pb-28 sm:pt-36">
+    <section id="top" className="relative overflow-hidden pb-20 pt-[5.75rem] sm:pb-28 sm:pt-36 md:pt-28">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-24 right-0 -z-10 h-96 w-96 rounded-full bg-accent/40 blur-3xl"
+        className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/40 blur-3xl"
       />
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <Reveal>
+      <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
+        <Reveal className="hidden md:block">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
             Envoy Direct — Independent software studio
           </p>
         </Reveal>
 
         <Reveal delay={80}>
-          <h1 className="mt-6 max-w-4xl text-balance font-serif text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl md:text-7xl">
+          <h1 className="mx-auto mt-0 max-w-4xl text-balance font-serif text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl md:mt-6 md:text-7xl">
             Software that ships.{" "}
-            <span className="text-muted-foreground">Not slideware.</span>
+            <span className="text-muted-foreground">From idea to launch.</span>
           </h1>
         </Reveal>
 
         <Reveal delay={160}>
-          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
-            I build MVPs, workflow automations, and UI systems for founders who need working
-            software — one person, from scope through deployment.
+          <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:mt-6 sm:text-lg sm:leading-relaxed">
+            I build production-ready MVPs, workflow automations, and UI systems for founders who
+            need working software — one person, from scope through deployment.
           </p>
         </Reveal>
 
         <Reveal delay={220}>
-          <div className="mt-7 flex flex-wrap items-center gap-2.5">
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-sm text-foreground">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
@@ -68,7 +68,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={280}>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href="#contact"
               className="group inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
@@ -87,9 +87,9 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={340}>
-          <dl className="mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-14 sm:max-w-2xl">
+          <dl className="mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-14">
             {heroStats.map((stat) => (
-              <div key={stat.label} className="bg-card px-6 py-8 sm:px-8 sm:py-10">
+              <div key={stat.label} className="bg-card px-4 py-8 sm:px-8 sm:py-10">
                 <dt className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">
                   {stat.value}
                 </dt>

@@ -1,12 +1,12 @@
 export const siteConfig = {
   name: "Envoy Direct",
   brand: "ENVOY DIRECT",
-  title: "Envoy Direct — Software that ships, by Jesse",
-  seoTitle: "Envoy Direct — Software that ships, by Jesse",
+  title: "Envoy Direct — Production-ready software, by Jesse",
+  seoTitle: "Envoy Direct — Freelance MVP Developer | Production-Ready Software",
   description:
-    "Envoy Direct is a one-person software studio in Ontario, Canada. Jesse builds MVPs, workflow automations, and UI systems for founders who need working software fast — scope to deployment, no agency hand-offs.",
+    "Envoy Direct is a one-person software studio in Ontario, Canada. Jesse builds production-ready MVPs, workflow automations, and UI systems for founders — from idea to launch, no agency hand-offs.",
   seoDescription:
-    "Envoy Direct is a one-person software studio in Ontario, Canada. Jesse builds MVPs, workflow automations, and UI systems for founders who need working software fast — scope to deployment, no agency hand-offs.",
+    "Hire Jesse at Envoy Direct to build production-ready MVPs, workflow automations, and UI systems. Independent full-stack developer in Ontario, Canada — from idea to launch.",
   email: "hello@envoydirect.co",
   contactEmail: "hello@envoydirect.co",
   location: "Ontario, Canada",
@@ -22,7 +22,7 @@ export const siteConfig = {
 } as const;
 
 export const heroStats = [
-  { value: "3", label: "Products shipped" },
+  { value: "1", label: "Featured project" },
   { value: "48h", label: "Reply time" },
   { value: "100%", label: "Direct, no hand-offs" },
 ] as const;
@@ -54,7 +54,7 @@ export const processSteps = [
   {
     step: "02",
     title: "Prototype",
-    description: "Working UI and core logic in the first few days — not a deck.",
+    description: "Working UI and core logic in the first few days — a real product preview.",
   },
   {
     step: "03",
@@ -70,31 +70,23 @@ export const processSteps = [
 
 export const featuredProjects = [
   {
-    id: "velomail",
-    name: "VeloMail",
+    id: "stay-connected",
+    name: "Stay Connected",
     status: "Shipped",
-    tagline: "Mobile email previews, in real time.",
+    tagline: "Digital literacy for seniors.",
     description:
-      "A real-time mobile email preview app and standalone studio workspace. Developers and marketers instantly visualize, test, and perfect how their emails render on mobile devices as they build them.",
-    stack: ["Next.js", "React", "HTML parsing"],
-  },
-  {
-    id: "metrorate",
-    name: "MetroRate",
-    status: "Shipped",
-    tagline: "Commission tracking that keeps the next number in view.",
-    description:
-      "A premium, high-fidelity sales commission tracker for high-performing reps. Complex commission structures become a clear, gamified performance interface that keeps the next number in view.",
-    stack: ["Next.js", "React", "PostgreSQL"],
-  },
-  {
-    id: "radarai",
-    name: "RadarAI",
-    status: "Shipped",
-    tagline: "Resume-to-job matching, automated.",
-    description:
-      "An advanced, automated resume-matching and job aggregator. Scraping logic and intelligent processing scan job markets, analyze resumes, and surface high-compatibility roles instantly.",
-    stack: ["Next.js", "Python", "AI"],
+      "Simple, patient digital literacy help for seniors — and peace of mind for the people who love them. Group classes, one-on-one sessions, and workshops across the Greater Toronto Area.",
+    stack: ["Next.js", "React", "Supabase", "Resend"],
+    previewImage: "/stay-connected-preview.png",
+    appUrl: "https://stay-connected-eta.vercel.app",
+    caseStudy: {
+      problem:
+        "Seniors and caretakers needed a calm, trustworthy way to book patient digital help — without overwhelming marketing sites or agency friction.",
+      approach:
+        "Designed a dual-audience experience: large, clear paths for seniors; reassurance and booking control for adult children. Blue-and-white trust palette, step-by-step flows, persistent phone and email anchors.",
+      shipped:
+        "Public marketing site, multi-step booking wizard, newsletter capture, resource blog, and a password-protected admin CMS for bookings, posts, and metrics — all on Next.js with Supabase.",
+    },
   },
 ];
 
@@ -121,7 +113,9 @@ export const projectTypes = ["MVP", "Automation", "UI build", "Not sure yet"] as
 export const seoKeywords = [
   "Envoy Direct",
   "Jesse Envoy",
-  "independent software developer",
+  "freelance MVP developer",
+  "production-ready software",
+  "independent software developer Ontario",
   "full-stack MVP development",
-  "Ontario freelance developer",
+  "hire freelance developer Canada",
 ];

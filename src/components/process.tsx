@@ -6,9 +6,9 @@ import { processSteps } from "@/lib/site-config";
 export function Process() {
   return (
     <section id="process" className="scroll-mt-20 border-t border-border py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
         <Reveal>
-          <SectionLabel>Process</SectionLabel>
+          <SectionLabel centered>Process</SectionLabel>
         </Reveal>
         <Reveal delay={60}>
           <h2 className="mt-6 text-balance font-serif text-4xl font-medium tracking-tight sm:text-5xl">
@@ -16,13 +16,13 @@ export function Process() {
           </h2>
         </Reveal>
         <Reveal delay={120}>
-          <p className="mt-5 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground">
+          <p className="mx-auto mt-5 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground">
             Scoped timelines, preview links early, and direct communication — no hand-offs, no
             surprises.
           </p>
         </Reveal>
 
-        <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-12 grid gap-4 text-left sm:grid-cols-2 lg:grid-cols-4">
           {processSteps.map((step, index) => (
             <Reveal as="li" key={step.step} delay={140 + index * 80}>
               <div className="group relative flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-foreground/20">
@@ -37,7 +37,7 @@ export function Process() {
         </ol>
 
         <Reveal delay={200}>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#contact"
               className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"

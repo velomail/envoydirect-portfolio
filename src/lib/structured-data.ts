@@ -8,6 +8,7 @@ export function getStructuredData() {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description: project.description,
+    url: project.appUrl,
   }));
 
   return [

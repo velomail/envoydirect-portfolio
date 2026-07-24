@@ -74,13 +74,28 @@
     text-size-adjust: 100%;
   }
 
+  html {
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     min-height: 100dvh;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
     padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* iOS Safari zooms focused fields below 16px and breaks the layout */
+  @media (max-width: 767px) {
+    :where(input, textarea, select) {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
   }
 
   ::selection {

@@ -5,17 +5,15 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-border py-12">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 sm:px-8 md:flex-row md:items-end md:justify-between">
-        <div>
-          <a href="#top" className="text-sm font-semibold tracking-[0.12em]">
-            {siteConfig.brand}
-          </a>
-          <p className="mt-3 text-sm text-muted-foreground">
-            {siteConfig.founder} · {siteConfig.location}
-          </p>
-        </div>
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-5 text-center sm:px-8">
+        <a href="#top" className="text-sm font-semibold tracking-[0.12em]">
+          {siteConfig.brand}
+        </a>
+        <p className="text-sm text-muted-foreground">
+          {siteConfig.founder} · {siteConfig.location}
+        </p>
 
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
           <a
             href={`mailto:${siteConfig.email}`}
             className="text-muted-foreground transition-colors hover:text-foreground"
@@ -34,9 +32,8 @@ export function SiteFooter() {
             </a>
           ))}
         </div>
-      </div>
-      <div className="mx-auto mt-8 max-w-6xl px-5 sm:px-8">
-        <p className="border-t border-border pt-6 text-xs text-muted-foreground">
+
+        <p className="w-full border-t border-border pt-6 text-xs text-muted-foreground">
           © {year} {siteConfig.name}. All rights reserved.
         </p>
       </div>
