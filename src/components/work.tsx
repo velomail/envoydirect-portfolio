@@ -49,7 +49,7 @@ export function Work() {
             </span>
           </a>
 
-          <div className="flex flex-col items-center gap-5 p-6 text-center sm:p-8">
+          <div className="flex flex-col items-center p-6 text-center sm:p-8">
             <div className="max-w-lg">
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <h3 className="font-serif text-2xl font-medium tracking-tight">{project.name}</h3>
@@ -72,15 +72,6 @@ export function Work() {
                 ))}
               </ul>
             </div>
-            <a
-              href={project.appUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
-            >
-              Visit app
-              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
           </div>
         </article>
 
