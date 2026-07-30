@@ -15,9 +15,7 @@ export const siteConfig = {
   founder: "Jesse Envoy",
   links: {
     github: "https://github.com/velomail",
-    linkedin: "https://linkedin.com/in/jesseenvoy",
-    upwork: "https://www.upwork.com/freelancers/~01envoydirect",
-    fiverr: "https://www.fiverr.com/envoydirect",
+    linkedin: "https://www.linkedin.com/in/jesse-hiles-685a86210/",
   },
 } as const;
 
@@ -29,8 +27,6 @@ export const heroStats = [
 
 export const socialLinks = [
   { label: "LinkedIn", href: siteConfig.links.linkedin },
-  { label: "Fiverr", href: siteConfig.links.fiverr },
-  { label: "Upwork", href: siteConfig.links.upwork },
 ] as const;
 
 export const aboutPoints = [

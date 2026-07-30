@@ -24,11 +24,7 @@ export function getStructuredData() {
         name: siteConfig.founder,
         url: siteConfig.links.linkedin,
       },
-      sameAs: [
-        siteConfig.links.linkedin,
-        siteConfig.links.fiverr,
-        siteConfig.links.upwork,
-      ],
+      sameAs: [siteConfig.links.linkedin],
     },
     {
       "@context": "https://schema.org",
