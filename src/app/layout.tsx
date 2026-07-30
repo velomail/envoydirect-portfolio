@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Newsreader } from "next/font/google";
+import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 import { getStructuredData } from "@/lib/structured-data";
 import { seoKeywords, siteConfig } from "@/lib/site-config";
 import "./globals.css";
@@ -76,6 +77,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(getStructuredData()) }}
         />
+        <PageViewTracker />
         {children}
       </body>
     </html>

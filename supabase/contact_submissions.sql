@@ -15,4 +15,4 @@ create index if not exists contact_submissions_created_at_idx
 alter table public.contact_submissions enable row level security;
 
 -- No public policies: inserts go through your Next.js API using the service role key.
--- Review submissions in Supabase → Table Editor → contact_submissions
+-- Review submissions in the portfolio /admin dashboard (or Supabase Table Editor).

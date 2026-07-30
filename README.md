@@ -17,8 +17,19 @@ Production portfolio for EnvoyDirect — the umbrella studio behind VeloMail, Me
 
 ```bash
 npm install
+cp .env.example .env.local
 npm run dev
 ```
+
+## Admin dashboard
+
+Password-protected analytics and quotes inbox at `/admin`.
+
+1. Set `ADMIN_PASSWORD` and `ADMIN_SESSION_SECRET` (16+ chars) in `.env.local` and Vercel.
+2. In Supabase SQL Editor, run:
+   - [`supabase/contact_submissions.sql`](supabase/contact_submissions.sql)
+   - [`supabase/page_views.sql`](supabase/page_views.sql)
+3. Open `/admin/login` and sign in with `ADMIN_PASSWORD`.
 
 ## Deploy
 
