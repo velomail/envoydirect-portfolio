@@ -20,7 +20,7 @@ export const siteConfig = {
 } as const;
 
 export const heroStats = [
-  { value: "1", label: "Featured project" },
+  { value: "2", label: "Client projects" },
   { value: "48h", label: "Reply time" },
   { value: "100%", label: "Direct, no hand-offs" },
 ] as const;
@@ -82,6 +82,25 @@ export const featuredProjects = [
         "Designed a dual-audience experience: large, clear paths for seniors; reassurance and booking control for adult children. Blue-and-white trust palette, step-by-step flows, persistent phone and email anchors.",
       shipped:
         "Public marketing site, multi-step booking wizard, newsletter capture, resource blog, and a password-protected admin CMS for bookings, posts, and metrics — all on Next.js with Supabase.",
+    },
+  },
+  {
+    id: "gunning-grounds",
+    name: "Gunning Grounds Service",
+    status: "Shipped",
+    tagline: "Residential & commercial maintenance that shows.",
+    description:
+      "A brand-forward marketing site for lawn care, seasonal clean-ups, and junk removal — with an interactive scope builder, quote requests, and an admin dashboard for leads and analytics.",
+    stack: ["Next.js", "React", "Supabase", "Tailwind CSS"],
+    previewImage: "/gunning-grounds-preview.png",
+    appUrl: "https://gunning-grounds.vercel.app",
+    caseStudy: {
+      problem:
+        "A growing property maintenance business needed a professional web presence and reliable lead capture — not a generic template that undersold the quality of their work.",
+      approach:
+        "Built a high-impact hero-led site with clear service hierarchy, mobile-first CTAs, a step-by-step scope builder for custom quotes, and trust anchors across testimonials and contact flows.",
+      shipped:
+        "Full marketing site, scope builder + quote modal, Supabase-backed quote and contact storage, page analytics, and a password-protected admin dashboard — deployed on Vercel.",
     },
   },
 ];
