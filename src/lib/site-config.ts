@@ -7,8 +7,8 @@ export const siteConfig = {
     "Envoy Direct is a one-person software studio in Ontario, Canada. Jesse builds production-ready MVPs, workflow automations, and UI systems for founders — from idea to launch, no agency hand-offs.",
   seoDescription:
     "Hire Jesse at Envoy Direct to build production-ready MVPs, workflow automations, and UI systems. Independent full-stack developer in Ontario, Canada — from idea to launch.",
-  email: "hello@envoydirect.co",
-  contactEmail: "hello@envoydirect.co",
+  email: "jesse03hiles@gmail.com",
+  contactEmail: "jesse03hiles@gmail.com",
   location: "Ontario, Canada",
   timezone: "America/Toronto",
   url: "https://envoydirect.co",
@@ -16,6 +16,8 @@ export const siteConfig = {
   links: {
     github: "https://github.com/velomail",
     linkedin: "https://www.linkedin.com/in/jesse-hiles-685a86210/",
+    fiverr:
+      "https://www.fiverr.com/envoydirect/build-a-nextjs-mvp-or-full-production-web-app-with-supabase",
   },
 } as const;
 
@@ -27,6 +29,7 @@ export const heroStats = [
 
 export const socialLinks = [
   { label: "LinkedIn", href: siteConfig.links.linkedin },
+  { label: "Fiverr", href: siteConfig.links.fiverr },
 ] as const;
 
 export const aboutPoints = [

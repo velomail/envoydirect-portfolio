@@ -57,7 +57,7 @@ export function Contact() {
       setType("MVP");
     } catch {
       setStatus("error");
-      setErrorMessage("Network error. Please try again or email hello@envoydirect.co.");
+      setErrorMessage("Network error. Please try again or email jesse03hiles@gmail.com.");
     }
   }
 

@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
   if (!supabase) {
     return NextResponse.json(
-      { error: "Contact form is not configured yet. Email hello@envoydirect.co instead." },
+      { error: "Contact form is not configured yet. Email jesse03hiles@gmail.com instead." },
       { status: 503 },
     );
   }
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
   if (error) {
     console.error("Supabase contact insert failed:", error.message);
     return NextResponse.json(
-      { error: "Could not save your message. Please try again or email hello@envoydirect.co." },
+      { error: "Could not save your message. Please try again or email jesse03hiles@gmail.com." },
       { status: 500 },
     );
   }
