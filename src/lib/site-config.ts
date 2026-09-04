@@ -115,7 +115,8 @@ export const featuredProjects = [
       "A free Chrome extension that mirrors your Gmail compose window in a live phone frame as you type — catch mobile layout issues without sending a test email. Privacy-local: nothing leaves your device.",
     stack: ["Chrome Extension", "Manifest V3", "JavaScript", "Vercel"],
     previewImage: "/velomail-preview.png",
-    appUrl: "https://velomail.vercel.app",
+    appUrl:
+      "https://chromewebstore.google.com/detail/velomail-%E2%80%94-mobile-preview/gifcnmheckieogmpnohkhajjhnelmico",
     caseStudy: {
       problem:
         "People write email on desktop, but recipients almost always read on a phone — and broken spacing, truncated subjects, and awkward formatting only show up after you hit send.",
