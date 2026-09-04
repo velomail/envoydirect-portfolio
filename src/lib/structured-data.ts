@@ -1,15 +1,19 @@
 import { featuredProjects, siteConfig } from "@/lib/site-config";
 
 export function getStructuredData() {
-  const softwareApps = featuredProjects.map((project) => ({
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: project.name,
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    description: project.description,
-    url: project.appUrl,
-  }));
+  const softwareApps = featuredProjects
+    .filter((project): project is typeof project & { appUrl: string } =>
+      "appUrl" in project && typeof project.appUrl === "string" && project.appUrl.length > 0
+    )
+    .map((project) => ({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: project.name,
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description: project.description,
+      url: project.appUrl,
+    }));
 
   return [
     {

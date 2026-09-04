@@ -22,7 +22,7 @@ export const siteConfig = {
 } as const;
 
 export const heroStats = [
-  { value: "2", label: "Client projects" },
+  { value: "3", label: "Shipped projects" },
   { value: "48h", label: "Reply time" },
   { value: "100%", label: "Direct, no hand-offs" },
 ] as const;
@@ -104,6 +104,43 @@ export const featuredProjects = [
         "Built a high-impact hero-led site with clear service hierarchy, mobile-first CTAs, a step-by-step scope builder for custom quotes, and trust anchors across testimonials and contact flows.",
       shipped:
         "Full marketing site, scope builder + quote modal, Supabase-backed quote and contact storage, page analytics, and a password-protected admin dashboard — deployed on Vercel.",
+    },
+  },
+  {
+    id: "velomail",
+    name: "VeloMail",
+    status: "Shipped",
+    tagline: "See your Gmail draft on a phone before you send.",
+    description:
+      "A free Chrome extension that mirrors your Gmail compose window in a live phone frame as you type — catch mobile layout issues without sending a test email. Privacy-local: nothing leaves your device.",
+    stack: ["Chrome Extension", "Manifest V3", "JavaScript", "Vercel"],
+    previewImage: "/velomail-preview.png",
+    appUrl: "https://velomail.vercel.app",
+    caseStudy: {
+      problem:
+        "People write email on desktop, but recipients almost always read on a phone — and broken spacing, truncated subjects, and awkward formatting only show up after you hit send.",
+      approach:
+        "Built a Manifest V3 Gmail content overlay with a draggable phone frame that updates live as you type, plus dark/light chrome and a keyboard shortcut — no account, no backend, draft content stays in the browser.",
+      shipped:
+        "Chrome Web Store listing, marketing site on Vercel, live phone preview for Gmail compose, and a privacy-first local-only render path with zero data collection.",
+    },
+  },
+  {
+    id: "resume-job-matcher",
+    name: "Resume-matched job finder",
+    status: "Coming soon",
+    tagline: "Top 10 job matches from your resume.",
+    description:
+      "A mobile app that scrapes major job platforms and ranks the best fits against your resume — so you see the top ten opportunities worth applying to, not an endless feed.",
+    stack: ["React Native", "Expo", "Node.js", "Supabase"],
+    previewImage: "/coming-soon-job-matcher.png",
+    caseStudy: {
+      problem:
+        "Job seekers drown in listings that don’t match their skills or experience — searching multiple boards and guessing fit wastes hours every week.",
+      approach:
+        "Plan a mobile-first flow: upload or paste a resume, scrape listings from major platforms, score relevance, and surface a ranked top-ten list with clear match reasons.",
+      shipped:
+        "In progress — mobile app shell and matching pipeline planned for a first release that delivers ranked jobs from your resume on iOS and Android.",
     },
   },
 ];
