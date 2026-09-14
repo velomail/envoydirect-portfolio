@@ -13,10 +13,10 @@ export default function HomePage() {
       <SiteNav />
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <About />
-        <Services />
         <Work />
+        <Services />
         <Process />
+        <About />
         <Contact />
       </main>
       <SiteFooter />

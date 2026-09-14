@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [type, setType] = useState<(typeof projectTypes)[number]>("MVP");
+  const [type, setType] = useState<(typeof projectTypes)[number]>("Redesign");
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -54,7 +54,7 @@ export function Contact() {
 
       setStatus("done");
       form.reset();
-      setType("MVP");
+      setType("Redesign");
     } catch {
       setStatus("error");
       setErrorMessage("Network error. Please try again or email jesse03hiles@gmail.com.");
@@ -77,8 +77,8 @@ export function Contact() {
         </Reveal>
         <Reveal delay={120}>
           <p className="mx-auto mt-5 max-w-md text-pretty text-lg leading-relaxed text-muted-foreground">
-            Limited availability and I reply within 48 hours. Tell me what you&apos;re building —
-            I&apos;ll come back with honest next steps.
+            Limited availability, and I reply within 48 hours. Tell me about your business and
+            your current site — I&apos;ll come back with honest next steps.
           </p>
         </Reveal>
 
@@ -192,7 +192,7 @@ export function Contact() {
                     name="message"
                     rows={4}
                     required
-                    placeholder="What are you building?"
+                    placeholder="What's not working on your current site?"
                     className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/20 sm:text-sm"
                   />
                 </div>

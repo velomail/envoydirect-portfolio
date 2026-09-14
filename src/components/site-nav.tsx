@@ -5,11 +5,11 @@ import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/#services" },
+  { label: "Process", href: "/#process" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
 ] as const;
 
 export function SiteNav() {
@@ -25,12 +25,12 @@ export function SiteNav() {
 
   useEffect(() => {
     const sections = links
-      .map((l) => document.querySelector(l.href))
+      .map((l) => document.querySelector(`#${l.href.split("#")[1]}`))
       .filter(Boolean) as Element[];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) setActive(`#${e.target.id}`);
+          if (e.isIntersecting) setActive(`/#${e.target.id}`);
         });
       },
       { rootMargin: "-45% 0px -50% 0px" },
@@ -52,12 +52,12 @@ export function SiteNav() {
         aria-label="Primary"
         className="mx-auto flex min-h-16 max-w-6xl flex-col items-center justify-center gap-3 px-5 py-3 sm:px-8 md:h-auto md:flex-row md:flex-wrap md:gap-x-8 md:gap-y-2 md:py-4"
       >
-        <a href="#top" className="flex flex-col items-center text-center">
+        <a href="/#top" className="flex flex-col items-center text-center">
           <span className="text-lg font-semibold tracking-[0.14em] md:text-sm md:tracking-[0.12em]">
             ENVOY DIRECT
           </span>
           <span className="mt-1 max-w-[17rem] font-mono text-[0.625rem] uppercase leading-snug tracking-[0.14em] text-muted-foreground md:mt-0.5">
-            Independent software studio
+            Websites for local businesses
           </span>
         </a>
 
@@ -91,7 +91,7 @@ export function SiteNav() {
             Open for work
           </span>
           <a
-            href="#contact"
+            href="/#contact"
             className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
           >
             Start a project

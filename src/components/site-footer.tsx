@@ -35,6 +35,12 @@ export function SiteFooter() {
 
         <p className="w-full border-t border-border pt-6 text-xs text-muted-foreground">
           © {year} {siteConfig.name}. All rights reserved.
+          <a
+            href="/other-builds"
+            className="ml-3 text-muted-foreground/70 transition-colors hover:text-muted-foreground"
+          >
+            Other builds
+          </a>
         </p>
       </div>
     </footer>

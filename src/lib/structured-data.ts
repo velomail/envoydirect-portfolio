@@ -41,7 +41,7 @@ export function getStructuredData() {
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
-      name: "Envoy Direct Software Development",
+      name: "Envoy Direct Website Redesigns",
       url: siteConfig.url,
       description: siteConfig.description,
       areaServed: siteConfig.location,

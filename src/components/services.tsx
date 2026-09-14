@@ -1,9 +1,9 @@
-import { ArrowUpRight, Boxes, LayoutPanelTop, Workflow } from "lucide-react";
+import { ArrowUpRight, CalendarCheck, Globe, Smartphone } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SectionLabel } from "@/components/section-label";
 import { services } from "@/lib/site-config";
 
-const serviceIcons = [Boxes, Workflow, LayoutPanelTop] as const;
+const serviceIcons = [Globe, CalendarCheck, Smartphone] as const;
 
 export function Services() {
   return (
@@ -22,8 +22,8 @@ export function Services() {
         </Reveal>
         <Reveal delay={120}>
           <p className="mx-auto mt-5 max-w-md text-pretty text-lg leading-relaxed text-muted-foreground">
-            A focused set of services I can own end-to-end. If it&apos;s not a fit, I&apos;ll tell
-            you honestly and point you somewhere better.
+            Three things I do for local businesses. If it&apos;s not a fit, I&apos;ll tell you
+            honestly and point you somewhere better.
           </p>
         </Reveal>
 

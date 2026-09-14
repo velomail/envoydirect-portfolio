@@ -23,7 +23,7 @@ export default function OpenGraphImage() {
       >
         <div style={{ fontSize: 24, color: "#5c6678", marginBottom: 24 }}>{siteConfig.brand}</div>
         <div style={{ fontSize: 56, fontWeight: 400, lineHeight: 1.1, maxWidth: 900, fontFamily: "serif" }}>
-          Software that ships.
+          A website that brings in customers.
         </div>
         <div style={{ marginTop: 28, fontSize: 22, color: "#5c6678" }}>{siteConfig.description}</div>
       </div>

@@ -31,21 +31,22 @@ export function Hero() {
       <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
         <Reveal className="hidden md:block">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            Envoy Direct — Independent software studio
+            Envoy Direct — Websites for local businesses
           </p>
         </Reveal>
 
         <Reveal delay={80}>
           <h1 className="mx-auto mt-0 max-w-4xl text-balance font-serif text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl md:mt-6 md:text-7xl">
-            Software that ships.{" "}
-            <span className="text-muted-foreground">From idea to launch.</span>
+            A website that brings in customers.{" "}
+            <span className="text-muted-foreground">Not just a nicer homepage.</span>
           </h1>
         </Reveal>
 
         <Reveal delay={160}>
           <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:mt-6 sm:text-lg sm:leading-relaxed">
-            I build production-ready MVPs, workflow automations, and UI systems for founders who
-            need working software — one person, from scope through deployment.
+            I redesign sites for contractors, restaurants, dentists, and service businesses — so
+            people can find you, trust you, and call or book. One person, from first conversation
+            to launch.
           </p>
         </Reveal>
 
@@ -77,10 +78,10 @@ export function Hero() {
               <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a
-              href="#services"
+              href="#work"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
             >
-              View services
+              See the work
               <ArrowDown className="size-4" />
             </a>
           </div>

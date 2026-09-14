@@ -2,37 +2,56 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SectionLabel } from "@/components/section-label";
-import { featuredProjects } from "@/lib/site-config";
+import { featuredProjects, type Project } from "@/lib/site-config";
+import { cn } from "@/lib/utils";
 
-export function Work() {
+type WorkProps = {
+  id?: string;
+  label?: string;
+  title?: string;
+  subtitle?: string;
+  projects?: readonly Project[];
+  className?: string;
+};
+
+export function Work({
+  id = "work",
+  label = "Work",
+  title = "Sites built for real businesses",
+  subtitle = "A local service company that now takes quotes online, and software designed so anyone can use it — not just tech people.",
+  projects = featuredProjects,
+  className,
+}: WorkProps) {
   return (
-    <section id="work" className="scroll-mt-20 border-t border-border py-20 sm:py-28">
+    <section
+      id={id}
+      className={cn("scroll-mt-20 border-t border-border py-20 sm:py-28", className)}
+    >
       <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
         <Reveal>
-          <SectionLabel centered>Work</SectionLabel>
+          <SectionLabel centered>{label}</SectionLabel>
         </Reveal>
         <Reveal delay={60}>
           <h2 className="mt-6 text-balance font-serif text-4xl font-medium tracking-tight sm:text-5xl">
-            Work that shipped — and what&apos;s next
+            {title}
           </h2>
         </Reveal>
         <Reveal delay={120}>
           <p className="mx-auto mt-5 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground">
-            Client sites, a live Chrome product, and a mobile job-matching app on the way —
-            scoped builds with clear outcomes.
+            {subtitle}
           </p>
         </Reveal>
       </div>
 
       <div className="mx-auto mt-10 max-w-5xl space-y-16 px-5 sm:px-8 sm:space-y-20">
-        {featuredProjects.map((project, projectIndex) => {
+        {projects.map((project, projectIndex) => {
           const hasLiveUrl = "appUrl" in project && Boolean(project.appUrl);
           const previewClassName =
             "group relative block aspect-[16/9] w-full overflow-hidden border-b border-border bg-secondary";
           const previewImage = (
             <Image
               src={project.previewImage}
-              alt={`${project.name} app preview`}
+              alt={`${project.name} preview`}
               fill
               className={`object-cover object-top${hasLiveUrl ? " transition-transform duration-500 group-hover:scale-[1.02]" : ""}`}
               sizes="(max-width: 1024px) 100vw, 1024px"
@@ -43,7 +62,7 @@ export function Work() {
             <span className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-full border border-border bg-card/95 px-3 py-1.5 text-xs font-medium text-foreground shadow-sm backdrop-blur-sm">
               {hasLiveUrl ? (
                 <>
-                  Visit live app
+                  Visit live site
                   <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </>
               ) : (
@@ -61,7 +80,7 @@ export function Work() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`${previewClassName} outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2`}
-                    aria-label={`Open ${project.name} live app`}
+                    aria-label={`Open ${project.name} live site`}
                   >
                     {previewImage}
                     {previewChip}
@@ -88,15 +107,16 @@ export function Work() {
                       {project.description}
                     </p>
                     <ul className="mt-4 flex flex-wrap justify-center gap-2">
-                      {project.stack.map((item) => (
+                      {project.outcomes.map((item) => (
                         <li
                           key={item}
-                          className="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-muted-foreground"
+                          className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground"
                         >
                           {item}
                         </li>
                       ))}
                     </ul>
+                    <p className="mt-4 text-xs text-muted-foreground">Built on {project.stackLine}</p>
                   </div>
                 </div>
               </article>
@@ -125,10 +145,10 @@ export function Work() {
                 <Reveal delay={180 + projectIndex * 40}>
                   <div>
                     <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-                      Shipped
+                      Result
                     </p>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {project.caseStudy.shipped}
+                      {project.caseStudy.result}
                     </p>
                   </div>
                 </Reveal>
