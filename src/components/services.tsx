@@ -2,14 +2,19 @@ import { ArrowUpRight, CalendarCheck, Globe, Smartphone } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SectionLabel } from "@/components/section-label";
 import { services } from "@/lib/site-config";
+import { cn } from "@/lib/utils";
 
 const serviceIcons = [Globe, CalendarCheck, Smartphone] as const;
 
-export function Services() {
+type ServicesProps = {
+  className?: string;
+};
+
+export function Services({ className }: ServicesProps) {
   return (
     <section
       id="services"
-      className="scroll-mt-20 border-t border-border bg-secondary/40 py-20 sm:py-28"
+      className={cn("scroll-mt-20 border-t border-border bg-secondary/40 py-20 sm:py-28", className)}
     >
       <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
         <Reveal>
@@ -50,6 +55,13 @@ export function Services() {
                         </li>
                       ))}
                     </ul>
+                    <a
+                      href={service.workHref}
+                      className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-foreground"
+                    >
+                      {service.workLabel}
+                      <ArrowUpRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
                   </div>
                 </article>
               </Reveal>
@@ -58,16 +70,12 @@ export function Services() {
         </div>
 
         <Reveal delay={360}>
-          <div className="mx-auto mt-10 max-w-md">
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Taking on a limited number of projects. Preview links within the first week, direct
-              access throughout.
-            </p>
+          <div className="mx-auto mt-10">
             <a
               href="#contact"
-              className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-foreground"
+              className="group inline-flex items-center gap-1 text-sm font-medium text-foreground"
             >
-              Start a project
+              Get a quote
               <ArrowUpRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>

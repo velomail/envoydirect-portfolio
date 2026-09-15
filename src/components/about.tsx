@@ -1,19 +1,38 @@
-import Image from "next/image";
 import { ArrowUpRight, Check } from "lucide-react";
+import { AboutPortrait } from "@/components/about-portrait";
 import { Reveal } from "@/components/reveal";
 import { SectionLabel } from "@/components/section-label";
-import { aboutParagraphs, aboutPoints, siteConfig, socialLinks } from "@/lib/site-config";
+import { aboutParagraphs, aboutPoints, siteConfig } from "@/lib/site-config";
+import { cn } from "@/lib/utils";
 
-export function About() {
+type AboutProps = {
+  className?: string;
+  hidePortrait?: boolean;
+  align?: "center" | "start";
+};
+
+export function About({ className, hidePortrait = false, align = "center" }: AboutProps) {
+  const centered = align === "center";
+
   return (
-    <section id="about" className="scroll-mt-20 border-t border-border py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
+    <section className={cn("scroll-mt-20 border-t border-border py-20 sm:py-28", className)}>
+      <div
+        className={cn(
+          "mx-auto max-w-6xl px-5 sm:px-8",
+          centered ? "text-center" : "text-left",
+        )}
+      >
         <Reveal>
-          <SectionLabel centered>About</SectionLabel>
+          <SectionLabel centered={centered}>About</SectionLabel>
         </Reveal>
 
         <Reveal delay={60}>
-          <h2 className="mx-auto mt-6 max-w-xl text-balance font-serif text-4xl font-medium tracking-tight sm:text-5xl">
+          <h2
+            className={cn(
+              "mt-6 max-w-xl text-balance font-serif text-4xl font-medium tracking-tight sm:text-5xl",
+              centered && "mx-auto",
+            )}
+          >
             Hi, I&apos;m Jesse.
           </h2>
         </Reveal>
@@ -26,32 +45,11 @@ export function About() {
           </div>
         </Reveal>
 
-        <Reveal delay={180} className="mx-auto mt-10 max-w-sm">
-          <figure className="overflow-hidden rounded-2xl border border-border bg-card text-left">
-            <div className="relative aspect-[4/5] w-full bg-secondary">
-              <Image
-                src="/jesse-portrait.png"
-                alt="Portrait of Jesse, founder of Envoy Direct"
-                fill
-                className="object-cover object-[center_25%]"
-                sizes="(max-width: 1024px) 100vw, 384px"
-                priority
-              />
-            </div>
-            <figcaption className="flex items-center justify-between gap-2 border-t border-border px-5 py-4">
-              <div>
-                <p className="text-sm font-medium text-foreground">Jesse — Founder</p>
-                <p className="text-xs text-muted-foreground">
-                  {siteConfig.name} · Ontario, CA
-                </p>
-              </div>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground">
-                <span className="size-1.5 rounded-full bg-success" />
-                Available
-              </span>
-            </figcaption>
-          </figure>
-        </Reveal>
+        {hidePortrait ? null : (
+          <Reveal delay={180} className="mx-auto mt-10 max-w-sm">
+            <AboutPortrait priority />
+          </Reveal>
+        )}
 
         <ul className="mx-auto mt-10 grid max-w-3xl gap-3 text-left sm:grid-cols-2">
           {aboutPoints.map((point, index) => (
@@ -67,20 +65,15 @@ export function About() {
         </ul>
 
         <Reveal delay={420}>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1 text-sm font-medium text-foreground"
-              >
-                {social.label}
-                <ArrowUpRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            ))}
-          </div>
+          <a
+            href={siteConfig.links.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-8 inline-flex items-center gap-1 text-sm font-medium text-foreground"
+          >
+            LinkedIn
+            <ArrowUpRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         </Reveal>
       </div>
     </section>

@@ -7,7 +7,17 @@ type ContactPayload = {
   email?: string;
   projectType?: string;
   message?: string;
+  siteUrl?: string;
 };
+
+function isValidUrl(value: string) {
+  try {
+    const parsed = new URL(value);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -26,6 +36,7 @@ export async function POST(request: Request) {
   const email = body.email?.trim() ?? "";
   const projectType = body.projectType?.trim() ?? "";
   const message = body.message?.trim() ?? "";
+  const siteUrl = body.siteUrl?.trim() ?? "";
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 });
@@ -38,6 +49,12 @@ export async function POST(request: Request) {
   if (!projectTypes.includes(projectType as (typeof projectTypes)[number])) {
     return NextResponse.json({ error: "Please select a valid project type." }, { status: 400 });
   }
+
+  if (siteUrl && !isValidUrl(siteUrl)) {
+    return NextResponse.json({ error: "Please enter a valid site link." }, { status: 400 });
+  }
+
+  const storedMessage = siteUrl ? `Current site: ${siteUrl}\n\n${message}` : message;
 
   const supabase = createSupabaseAdmin();
 
@@ -52,7 +69,7 @@ export async function POST(request: Request) {
     name,
     email,
     project_type: projectType,
-    message,
+    message: storedMessage,
   });
 
   if (error) {

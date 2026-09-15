@@ -6,11 +6,11 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border py-12">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-5 text-center sm:px-8">
-        <a href="#top" className="text-sm font-semibold tracking-[0.12em]">
+        <a href="/#top" className="text-sm font-semibold tracking-[0.12em]">
           {siteConfig.brand}
         </a>
         <p className="text-sm text-muted-foreground">
-          {siteConfig.founder} · {siteConfig.location}
+          {siteConfig.name} · Serving {siteConfig.location}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
@@ -35,6 +35,18 @@ export function SiteFooter() {
 
         <p className="w-full border-t border-border pt-6 text-xs text-muted-foreground">
           © {year} {siteConfig.name}. All rights reserved.
+          <a
+            href="/services"
+            className="ml-3 text-muted-foreground/70 transition-colors hover:text-muted-foreground"
+          >
+            Services
+          </a>
+          <a
+            href="/process"
+            className="ml-3 text-muted-foreground/70 transition-colors hover:text-muted-foreground"
+          >
+            Process
+          </a>
           <a
             href="/other-builds"
             className="ml-3 text-muted-foreground/70 transition-colors hover:text-muted-foreground"

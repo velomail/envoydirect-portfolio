@@ -29,6 +29,10 @@ export function getStructuredData() {
         url: siteConfig.links.linkedin,
       },
       sameAs: [siteConfig.links.linkedin, siteConfig.links.fiverr],
+      areaServed: [
+        { "@type": "City", name: "Orillia" },
+        { "@type": "AdministrativeArea", name: "Simcoe County" },
+      ],
     },
     {
       "@context": "https://schema.org",
@@ -44,7 +48,10 @@ export function getStructuredData() {
       name: "Envoy Direct Website Redesigns",
       url: siteConfig.url,
       description: siteConfig.description,
-      areaServed: siteConfig.location,
+      areaServed: [
+        { "@type": "City", name: "Orillia" },
+        { "@type": "AdministrativeArea", name: "Simcoe County" },
+      ],
     },
     ...softwareApps,
   ];

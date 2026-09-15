@@ -1,105 +1,68 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { ArrowUpRight, ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { AboutTrustColumn } from "@/components/about-trust";
 import { Reveal } from "@/components/reveal";
-import { heroStats, siteConfig } from "@/lib/site-config";
+import {
+  sectionSplitClass,
+  sectionSplitStartClass,
+  SectionIntro,
+} from "@/components/section-intro";
+import { siteConfig } from "@/lib/site-config";
+import { cn } from "@/lib/utils";
 
-export function Hero() {
-  const [time, setTime] = useState("");
+type HeroProps = {
+  className?: string;
+};
 
-  useEffect(() => {
-    const update = () => {
-      const formatted = new Date().toLocaleTimeString("en-US", {
-        timeZone: siteConfig.timezone,
-        hour: "numeric",
-        minute: "2-digit",
-      });
-      setTime(`EST · ${formatted}`);
-    };
-    update();
-    const id = window.setInterval(update, 30_000);
-    return () => window.clearInterval(id);
-  }, []);
-
+export function Hero({ className }: HeroProps) {
   return (
-    <section id="top" className="relative overflow-hidden pb-20 pt-[5.75rem] sm:pb-28 sm:pt-36 md:pt-28">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 rounded-full bg-accent/40 blur-3xl"
-      />
-      <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
-        <Reveal className="hidden md:block">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            Envoy Direct — Websites for local businesses
-          </p>
-        </Reveal>
-
-        <Reveal delay={80}>
-          <h1 className="mx-auto mt-0 max-w-4xl text-balance font-serif text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl md:mt-6 md:text-7xl">
+    <section
+      id="top"
+      className={cn("scroll-mt-20 border-t border-border py-14 sm:py-20", className)}
+    >
+      <SectionIntro
+        as="h1"
+        title={
+          <>
             A website that brings in customers.{" "}
             <span className="text-muted-foreground">Not just a nicer homepage.</span>
-          </h1>
-        </Reveal>
+          </>
+        }
+        subtitle={
+          <>
+            I redesign sites for local businesses across Orillia and Simcoe County — so people can
+            find you, trust you, and call or book. Serving {siteConfig.location}.
+          </>
+        }
+      />
 
-        <Reveal delay={160}>
-          <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:mt-6 sm:text-lg sm:leading-relaxed">
-            I redesign sites for contractors, restaurants, dentists, and service businesses — so
-            people can find you, trust you, and call or book. One person, from first conversation
-            to launch.
-          </p>
-        </Reveal>
-
-        <Reveal delay={220}>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-sm text-foreground">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
-                <span className="relative inline-flex size-2 rounded-full bg-success" />
-              </span>
-              Open for work
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 font-mono text-sm tabular-nums text-muted-foreground">
-              {time || "EST · —"}
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-sm text-muted-foreground">
-              {siteConfig.location}
-            </span>
+      <div className={sectionSplitClass}>
+        <Reveal>
+          <div
+            className={cn(
+              sectionSplitStartClass,
+              "flex flex-col items-center justify-center py-2 text-center lg:py-6",
+            )}
+          >
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a
+                href="#contact"
+                className="group inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
+              >
+                Get a quote
+                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+              <a
+                href="#work"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-transparent px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary/60"
+              >
+                See the work
+                <ArrowDown className="size-4" />
+              </a>
+            </div>
           </div>
         </Reveal>
-
-        <Reveal delay={280}>
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="#contact"
-              className="group inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
-            >
-              Start a project
-              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <a
-              href="#work"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-secondary"
-            >
-              See the work
-              <ArrowDown className="size-4" />
-            </a>
-          </div>
-        </Reveal>
-
-        <Reveal delay={340}>
-          <dl className="mx-auto mt-12 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-14">
-            {heroStats.map((stat) => (
-              <div key={stat.label} className="bg-card px-4 py-8 sm:px-8 sm:py-10">
-                <dt className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">
-                  {stat.value}
-                </dt>
-                <dd className="mt-2 text-xs leading-snug text-muted-foreground sm:text-sm">
-                  {stat.label}
-                </dd>
-              </div>
-            ))}
-          </dl>
+        <Reveal delay={80}>
+          <AboutTrustColumn />
         </Reveal>
       </div>
     </section>

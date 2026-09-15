@@ -1,7 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
-import { SectionLabel } from "@/components/section-label";
+import {
+  sectionSplitAsideClass,
+  sectionSplitClass,
+  sectionSplitStartClass,
+  SectionIntro,
+} from "@/components/section-intro";
 import { featuredProjects, type Project } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +18,8 @@ type WorkProps = {
   subtitle?: string;
   projects?: readonly Project[];
   className?: string;
+  compact?: boolean;
+  sideBySide?: boolean;
 };
 
 export function Work({
@@ -21,33 +29,30 @@ export function Work({
   subtitle = "A local service company that now takes quotes online, and software designed so anyone can use it — not just tech people.",
   projects = featuredProjects,
   className,
+  compact = false,
+  sideBySide = false,
 }: WorkProps) {
   return (
     <section
       id={id}
       className={cn("scroll-mt-20 border-t border-border py-20 sm:py-28", className)}
     >
-      <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
-        <Reveal>
-          <SectionLabel centered>{label}</SectionLabel>
-        </Reveal>
-        <Reveal delay={60}>
-          <h2 className="mt-6 text-balance font-serif text-4xl font-medium tracking-tight sm:text-5xl">
-            {title}
-          </h2>
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="mx-auto mt-5 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground">
-            {subtitle}
-          </p>
-        </Reveal>
-      </div>
+      <SectionIntro label={label} title={title} subtitle={subtitle} />
 
-      <div className="mx-auto mt-10 max-w-5xl space-y-16 px-5 sm:px-8 sm:space-y-20">
+      <div
+        className={cn(
+          sideBySide
+            ? sectionSplitClass
+            : "mx-auto mt-10 max-w-5xl space-y-16 px-5 sm:space-y-20 sm:px-8",
+        )}
+      >
         {projects.map((project, projectIndex) => {
-          const hasLiveUrl = "appUrl" in project && Boolean(project.appUrl);
-          const previewClassName =
-            "group relative block aspect-[16/9] w-full overflow-hidden border-b border-border bg-secondary";
+          const connected = compact && sideBySide;
+          const hasLiveUrl = Boolean(project.appUrl);
+          const previewClassName = cn(
+            "group relative block aspect-[16/9] w-full overflow-hidden bg-secondary",
+            connected ? "rounded-2xl" : "border-b border-border",
+          );
           const previewImage = (
             <Image
               src={project.previewImage}
@@ -72,8 +77,17 @@ export function Work({
           );
 
           return (
-            <div key={project.id}>
-              <article className="overflow-hidden rounded-3xl border border-border bg-card">
+            <Reveal key={project.id} delay={projectIndex * 80}>
+              <article
+                className={cn(
+                  connected
+                    ? cn(
+                        projectIndex === 0 && sectionSplitStartClass,
+                        projectIndex === 1 && sectionSplitAsideClass,
+                      )
+                    : "overflow-hidden rounded-3xl border border-border bg-card",
+                )}
+              >
                 {hasLiveUrl ? (
                   <a
                     href={project.appUrl}
@@ -92,37 +106,62 @@ export function Work({
                   </div>
                 )}
 
-                <div className="flex flex-col items-center p-6 text-center sm:p-8">
-                  <div className="max-w-lg">
-                    <div className="flex flex-wrap items-center justify-center gap-3">
-                      <h3 className="font-serif text-2xl font-medium tracking-tight">
-                        {project.name}
-                      </h3>
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-0.5 text-xs font-medium text-accent-foreground">
-                        {project.status}
-                      </span>
-                    </div>
-                    <p className="mt-2 text-base font-medium text-foreground">{project.tagline}</p>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {project.description}
-                    </p>
-                    <ul className="mt-4 flex flex-wrap justify-center gap-2">
-                      {project.outcomes.map((item) => (
-                        <li
-                          key={item}
-                          className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground"
+                <div
+                  className={cn(
+                    "flex w-full flex-col items-center text-center",
+                    connected ? "px-0 pt-6 sm:pt-8" : "p-6 sm:p-8",
+                  )}
+                >
+                  <div className="w-full">
+                    {compact ? (
+                      <>
+                        <h3 className="font-serif text-2xl font-medium tracking-tight">
+                          {project.name}
+                        </h3>
+                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                          {project.tagline}
+                        </p>
+                        <Link
+                          href={`/work/${project.id}`}
+                          className="group mt-5 inline-flex items-center gap-1 text-sm font-medium text-foreground"
                         >
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-4 text-xs text-muted-foreground">Built on {project.stackLine}</p>
+                          Case study
+                          <ArrowUpRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex flex-wrap items-center justify-center gap-3">
+                          <h3 className="font-serif text-2xl font-medium tracking-tight">
+                            {project.name}
+                          </h3>
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-0.5 text-xs font-medium text-accent-foreground">
+                            {project.status}
+                          </span>
+                        </div>
+                        <p className="mt-2 text-base font-medium text-foreground">{project.tagline}</p>
+                        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                          {project.description}
+                        </p>
+                        <ul className="mt-4 flex flex-wrap justify-center gap-2">
+                          {project.outcomes.map((item) => (
+                            <li
+                              key={item}
+                              className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground"
+                            >
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="mt-4 text-xs text-muted-foreground">Built on {project.stackLine}</p>
+                      </>
+                    )}
                   </div>
                 </div>
               </article>
 
-              <div className="mt-12 grid gap-10 text-center sm:grid-cols-3 sm:gap-8">
-                <Reveal delay={60 + projectIndex * 40}>
+              {compact ? null : (
+                <div className="mt-12 grid gap-10 text-center sm:grid-cols-3 sm:gap-8">
                   <div>
                     <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
                       Problem
@@ -131,8 +170,6 @@ export function Work({
                       {project.caseStudy.problem}
                     </p>
                   </div>
-                </Reveal>
-                <Reveal delay={120 + projectIndex * 40}>
                   <div>
                     <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
                       Approach
@@ -141,8 +178,6 @@ export function Work({
                       {project.caseStudy.approach}
                     </p>
                   </div>
-                </Reveal>
-                <Reveal delay={180 + projectIndex * 40}>
                   <div>
                     <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
                       Result
@@ -151,9 +186,9 @@ export function Work({
                       {project.caseStudy.result}
                     </p>
                   </div>
-                </Reveal>
-              </div>
-            </div>
+                </div>
+              )}
+            </Reveal>
           );
         })}
       </div>

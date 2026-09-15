@@ -12,9 +12,9 @@ const desktopSections = [
   { file: "00-full-page.png", path: "/", fullPage: true },
   { file: "01-hero.png", path: "/" },
   { file: "02-about.png", path: "/#about" },
-  { file: "03-services.png", path: "/#services" },
+  { file: "03-services.png", path: "/services" },
   { file: "04-work-velomail.png", path: "/#work" },
-  { file: "05-process.png", path: "/#process" },
+  { file: "05-process.png", path: "/process" },
   { file: "06-contact.png", path: "/#contact" },
 ];
 

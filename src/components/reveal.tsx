@@ -26,9 +26,10 @@ export function Reveal({
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
 
-    const inView =
-      el.getBoundingClientRect().top < window.innerHeight * 0.92 &&
-      el.getBoundingClientRect().bottom > 0;
+    const rect = el.getBoundingClientRect();
+    if (rect.width === 0 && rect.height === 0) return;
+
+    const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
 
     if (inView) return;
 

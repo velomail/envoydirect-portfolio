@@ -2,10 +2,15 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SectionLabel } from "@/components/section-label";
 import { processSteps } from "@/lib/site-config";
+import { cn } from "@/lib/utils";
 
-export function Process() {
+type ProcessProps = {
+  className?: string;
+};
+
+export function Process({ className }: ProcessProps) {
   return (
-    <section id="process" className="scroll-mt-20 border-t border-border py-20 sm:py-28">
+    <section id="process" className={cn("scroll-mt-20 border-t border-border py-20 sm:py-28", className)}>
       <div className="mx-auto max-w-6xl px-5 text-center sm:px-8">
         <Reveal>
           <SectionLabel centered>Process</SectionLabel>
@@ -42,12 +47,9 @@ export function Process() {
               href="#contact"
               className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
             >
-              Start a project
+              Get a quote
               <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
-            <p className="text-sm text-muted-foreground">
-              Receive a Reply in Less Than 48 Hours
-            </p>
           </div>
         </Reveal>
       </div>
