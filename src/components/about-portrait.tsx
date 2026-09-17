@@ -17,7 +17,7 @@ export function AboutPortrait({ className, priority = false }: AboutPortraitProp
           fill
           quality={90}
           className="object-cover object-[center_25%]"
-          sizes="280px"
+          sizes="(max-width: 767px) 100vw, 256px"
           priority={priority}
         />
       </div>

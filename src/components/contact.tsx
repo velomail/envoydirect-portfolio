@@ -69,22 +69,22 @@ export function Contact() {
 
   return (
     <SectionFrame id="contact" label="Quote">
-      <h2 className="t-title text-[2.5rem] md:text-[3.25rem]">Get a quote.</h2>
-      <p className="mt-6 max-w-[32rem] text-[17px] leading-[1.6] text-muted-foreground">
+      <h2 className="t-title text-[clamp(1.85rem,6vw,3.25rem)]">Get a quote.</h2>
+      <p className="mt-5 max-w-[32rem] text-[17px] leading-[1.6] text-muted-foreground md:mt-6">
         You&apos;ve seen the work and how a project runs. Tell me what you need — I&apos;ll reply
         within 48 hours with a price and next steps.
       </p>
 
       {status === "done" ? (
-        <div className="mt-12">
+        <div className="mt-8 md:mt-12">
           <span className="jewel" aria-hidden="true" />
-          <h3 className="mt-4 t-title text-[1.75rem]">Message sent</h3>
+          <h3 className="mt-4 t-title text-[1.5rem] md:text-[1.75rem]">Message sent</h3>
           <p className="mt-2 max-w-xs text-[15px] text-muted-foreground">
             Thanks for reaching out. You&apos;ll hear back from me within 48 hours.
           </p>
         </div>
       ) : (
-        <form onSubmit={onSubmit} className="mt-12 space-y-8" noValidate>
+        <form onSubmit={onSubmit} className="mt-8 max-w-[40rem] space-y-6 md:mt-12 md:space-y-8" noValidate>
           <ProjectTypePicker id="contact-project-type" label="What are you looking for?" />
 
           <div>
@@ -164,7 +164,7 @@ export function Contact() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="inline-flex items-center justify-center gap-2 bg-foreground px-6 py-3 text-[15px] font-medium text-background transition-colors hover:bg-accent disabled:opacity-70"
+              className="inline-flex w-full items-center justify-center gap-2 bg-foreground px-6 py-3 text-[15px] font-medium text-background transition-colors hover:bg-accent disabled:opacity-70 sm:w-auto"
             >
               {status === "loading" ? (
                 <>

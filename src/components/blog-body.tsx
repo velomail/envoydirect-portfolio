@@ -35,12 +35,12 @@ function RichText({ text }: { text: string }) {
 
 export function BlogBody({ blocks }: { blocks: readonly BlogBlock[] }) {
   return (
-    <div className="mt-12 max-w-[40rem]">
+    <div className="mt-8 max-w-[40rem] md:mt-12">
       {blocks.map((block, index) => {
         const key = `${block.type}-${index}`;
         if (block.type === "h2") {
           return (
-            <h2 key={key} className="t-title mt-14 text-[1.75rem] md:text-[2.25rem]">
+            <h2 key={key} className="t-title mt-10 text-[clamp(1.45rem,4.5vw,2.25rem)] md:mt-14">
               {block.text}
             </h2>
           );

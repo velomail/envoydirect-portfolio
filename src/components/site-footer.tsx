@@ -5,7 +5,7 @@ export function SiteFooter() {
 
   return (
     <footer
-      className="page-wrap pt-20 md:pt-28"
+      className="page-wrap pt-12 md:pt-28"
       style={{ paddingBottom: "max(2.5rem, calc(2.5rem + env(safe-area-inset-bottom)))" }}
     >
       <div className="flex flex-col gap-4 border-t border-border pt-6 text-[13px] text-muted-foreground md:flex-row md:items-center md:justify-between">

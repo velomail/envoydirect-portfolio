@@ -39,16 +39,16 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   return (
     <PageShell>
       <main id="main-content" tabIndex={-1}>
-        <article className="page-wrap pb-20 pt-20 md:pb-28 md:pt-32">
-          <div className="border-t border-border pt-5 md:pt-6">
+        <article className="page-wrap pb-14 pt-10 md:pb-28 md:pt-32">
+          <div className="border-t border-border pt-4 md:pt-6">
             <p className="text-[13px] font-medium text-muted-foreground">Case study</p>
-            <div className="mt-10 md:mt-14">
-              <h1 className="t-display text-[3.25rem] sm:text-[4rem] md:text-[5.5rem]">
+            <div className="mt-8 md:mt-14">
+              <h1 className="t-display text-[clamp(2.35rem,9vw,5.5rem)]">
                 {project.name}
               </h1>
-              <p className="mt-4 text-[14px] text-muted-foreground">{project.tagline}</p>
-              <p className="mt-9 max-w-[32rem] text-[19px] leading-[1.5]">{project.description}</p>
-              <p className="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-[14px]">
+              <p className="mt-3 text-[14px] text-muted-foreground md:mt-4">{project.tagline}</p>
+              <p className="mt-6 max-w-[32rem] text-[17px] leading-[1.5] md:mt-9 md:text-[19px]">{project.description}</p>
+              <p className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[14px] md:mt-9">
                 {project.appUrl ? (
                   <a
                     href={project.appUrl}
@@ -69,10 +69,10 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               {project.action ? (
                 <div
                   id="on-the-site"
-                  className="mt-14 max-w-[32rem] scroll-mt-8 border-t border-border pt-8"
+                  className="mt-10 max-w-[32rem] scroll-mt-8 border-t border-border pt-6 md:mt-14 md:pt-8"
                 >
                   <p className="t-label text-muted-foreground">On the site</p>
-                  <h2 className="t-title mt-4 text-[1.75rem] md:text-[2.25rem]">
+                  <h2 className="t-title mt-3 text-[clamp(1.45rem,4.5vw,2.25rem)] md:mt-4">
                     {project.action.title}
                   </h2>
                   <p className="mt-4 text-[17px] leading-[1.6] text-muted-foreground">
@@ -81,7 +81,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 </div>
               ) : null}
 
-              <figure className="mt-14 border border-border bg-panel">
+              <figure className="mt-10 border border-border bg-panel md:mt-14">
                 <div className="relative aspect-[16/9] bg-panel">
                   <Image
                     src={project.previewImage}
@@ -96,7 +96,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               </figure>
 
               <div
-                className="mt-16 grid gap-8 border-t border-border pt-8 sm:grid-cols-3"
+                className="mt-10 grid gap-8 border-t border-border pt-8 md:mt-16 md:grid-cols-3"
               >
                 <div>
                   <p className="t-label text-muted-foreground">Need</p>
@@ -123,8 +123,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               </p>
 
               {project.testimonial ? (
-                <blockquote className="mt-14 max-w-[36rem] border-t border-border pt-8">
-                  <p className="t-title text-[1.75rem] leading-[1.2] md:text-[2.25rem]">
+                <blockquote className="mt-10 max-w-[36rem] border-t border-border pt-6 md:mt-14 md:pt-8">
+                  <p className="t-title text-[clamp(1.45rem,4.5vw,2.25rem)] leading-[1.25]">
                     &ldquo;{project.testimonial.quote}&rdquo;
                   </p>
                   <footer className="mt-5 text-[14px] text-muted-foreground">
@@ -133,7 +133,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 </blockquote>
               ) : null}
 
-              <div className="mt-16 grid gap-10 border-t border-border pt-10 md:grid-cols-2">
+              <div className="mt-12 grid gap-8 border-t border-border pt-8 md:mt-16 md:grid-cols-2 md:gap-10 md:pt-10">
                 <div className="max-w-[26rem]">
                   <p className="text-[15px] font-medium">Like what you see?</p>
                   <p className="mt-2 text-[15px] leading-[1.55] text-muted-foreground">

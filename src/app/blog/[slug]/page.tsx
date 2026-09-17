@@ -83,8 +83,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <article className="page-wrap pb-20 pt-20 md:pb-28 md:pt-32">
-          <div className="border-t border-border pt-5 md:pt-6">
+        <article className="page-wrap pb-14 pt-10 md:pb-28 md:pt-32">
+          <div className="border-t border-border pt-4 md:pt-6">
             <p className="text-[13px] font-medium text-muted-foreground">
               <a href="/blog" className="transition-colors hover:text-foreground">
                 Blog
@@ -94,7 +94,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <span aria-hidden="true"> · </span>
               <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             </p>
-            <h1 className="t-title mt-10 max-w-[40rem] text-[2.5rem] md:mt-14 md:text-[3.25rem]">
+            <h1 className="t-title mt-8 max-w-[40rem] text-[clamp(1.85rem,6vw,3.25rem)] md:mt-14">
               {post.title}
             </h1>
             <p className="mt-6 max-w-[36rem] text-[17px] leading-[1.6] text-muted-foreground">
@@ -103,7 +103,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             <BlogBody blocks={post.body} />
 
-            <div className="mt-16 grid gap-10 border-t border-border pt-10 md:grid-cols-2">
+            <div className="mt-12 grid gap-8 border-t border-border pt-8 md:mt-16 md:grid-cols-2 md:gap-10 md:pt-10">
               <div className="max-w-[26rem]">
                 <p className="text-[15px] font-medium">Want this on your site?</p>
                 <p className="mt-2 text-[15px] leading-[1.55] text-muted-foreground">

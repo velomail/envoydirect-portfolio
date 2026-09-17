@@ -30,7 +30,7 @@ export function ProcessTrack() {
   }, []);
 
   return (
-    <ol ref={listRef} className="relative mt-12 border-t border-border">
+    <ol ref={listRef} className="relative mt-8 border-t border-border md:mt-12">
       <span
         className="pointer-events-none absolute left-0 top-0 hidden h-full w-px bg-border md:block"
         aria-hidden="true"
@@ -44,7 +44,7 @@ export function ProcessTrack() {
         <li
           key={step.step}
           className={cn(
-            "grid grid-cols-[3.5rem_1fr] gap-4 border-b border-border py-5 text-[15px] transition-colors duration-500 md:grid-cols-[5rem_1fr] md:pl-6",
+            "grid grid-cols-[2.75rem_minmax(0,1fr)] gap-3 border-b border-border py-5 text-[15px] transition-colors duration-500 sm:grid-cols-[3.5rem_1fr] sm:gap-4 md:grid-cols-[5rem_1fr] md:pl-6",
             index === active ? "text-foreground" : "text-muted-foreground",
           )}
         >

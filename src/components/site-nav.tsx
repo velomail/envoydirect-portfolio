@@ -20,7 +20,7 @@ export function SiteNav() {
   const activeSection = useActiveSection(pathname === "/" ? homeSectionIds : idleSectionIds);
 
   return (
-    <header className="page-wrap flex flex-wrap items-center justify-between gap-x-4 gap-y-3 pt-14 md:pt-20">
+    <header className="page-wrap flex flex-col items-start gap-3 pt-[max(1.25rem,env(safe-area-inset-top))] sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:pt-8 md:pt-14 lg:pt-20">
       <a
         href="/#top"
         className="text-[15px] font-semibold tracking-[-0.01em] transition-colors hover:text-accent"
@@ -29,7 +29,7 @@ export function SiteNav() {
       </a>
       <nav
         aria-label="Primary"
-        className="flex flex-wrap justify-end gap-4 text-[13px] text-muted-foreground sm:gap-7 sm:text-[14px] md:gap-9"
+        className="flex flex-wrap gap-x-4 gap-y-2 text-[13px] text-muted-foreground sm:justify-end sm:gap-x-7 sm:text-[14px] md:gap-x-9"
       >
         {links.map((link) => {
           const active =
@@ -46,7 +46,7 @@ export function SiteNav() {
               key={link.href}
               href={link.href}
               className={cn(
-                "transition-colors hover:text-foreground",
+                "py-1 transition-colors hover:text-foreground",
                 active && "text-foreground",
               )}
             >

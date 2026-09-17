@@ -45,7 +45,7 @@ export function ProjectShot({ src, alt, priority = false }: ProjectShotProps) {
         fill
         priority={priority}
         quality={90}
-        sizes="(min-width: 768px) 520px, 100vw"
+        sizes="(min-width: 1024px) 520px, 100vw"
         className="object-cover object-top transition-transform duration-500 ease-out will-change-transform motion-reduce:transform-none"
       />
     </div>

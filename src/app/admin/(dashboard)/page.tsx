@@ -44,7 +44,7 @@ export default async function AdminDashboardPage() {
   return (
     <div className="space-y-10">
       <div>
-        <h1 className="font-serif text-4xl font-medium tracking-tight">Dashboard</h1>
+        <h1 className="font-serif text-3xl font-medium tracking-tight sm:text-4xl">Dashboard</h1>
         <p className="mt-2 text-muted-foreground">
           Quotes from the contact form and custom visitor analytics.
         </p>

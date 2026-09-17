@@ -6,21 +6,21 @@ export function BlogIndex() {
 
   return (
     <SectionFrame id="blog" label="Blog">
-      <h1 className="t-title text-[2.5rem] md:text-[3.25rem]">Notes on sites that bring in work.</h1>
-      <p className="mt-6 max-w-[32rem] text-[17px] leading-[1.6] text-muted-foreground">
+      <h1 className="t-title text-[clamp(1.85rem,6vw,3.25rem)]">Notes on sites that bring in work.</h1>
+      <p className="mt-5 max-w-[32rem] text-[17px] leading-[1.6] text-muted-foreground md:mt-6">
         Quote forms, booking pages, and the plain parts of a local business website — written for
         owners in Orillia and Simcoe County, not for a software pitch.
       </p>
 
-      <ul className="mt-14 border-t border-border">
+      <ul className="mt-10 border-t border-border md:mt-14">
         {posts.map((post) => (
-          <li key={post.slug} className="border-b border-border py-8">
+          <li key={post.slug} className="border-b border-border py-6 md:py-8">
             <p className="text-[13px] text-muted-foreground">
               {post.topic}
               <span aria-hidden="true"> · </span>
               <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             </p>
-            <h2 className="t-title mt-3 max-w-[36rem] text-[1.75rem] md:text-[2.25rem]">
+            <h2 className="t-title mt-3 max-w-[36rem] text-[clamp(1.45rem,4.5vw,2.25rem)]">
               <a href={`/blog/${post.slug}`} className="transition-colors hover:text-accent">
                 {post.title}
               </a>
