@@ -16,16 +16,29 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "80px",
-          background: "#faf9f7",
-          color: "#1a2332",
+          padding: "72px 80px",
+          background: "#eeeeea",
+          color: "#141414",
         }}
       >
-        <div style={{ fontSize: 24, color: "#5c6678", marginBottom: 24 }}>{siteConfig.brand}</div>
-        <div style={{ fontSize: 56, fontWeight: 400, lineHeight: 1.1, maxWidth: 900, fontFamily: "serif" }}>
-          A website that brings in customers.
+        <div style={{ fontSize: 22, fontWeight: 600, letterSpacing: "-0.01em", marginBottom: 28 }}>
+          envoydirect
         </div>
-        <div style={{ marginTop: 28, fontSize: 22, color: "#5c6678" }}>{siteConfig.description}</div>
+        <div
+          style={{
+            fontSize: 92,
+            fontWeight: 800,
+            lineHeight: 0.86,
+            letterSpacing: "-0.04em",
+            textTransform: "uppercase",
+            maxWidth: 1040,
+          }}
+        >
+          Envoy Direct
+        </div>
+        <div style={{ marginTop: 36, fontSize: 28, color: "#5c5c58", maxWidth: 720 }}>
+          {siteConfig.seoDescription}
+        </div>
       </div>
     ),
     { ...size },

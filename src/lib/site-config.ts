@@ -1,12 +1,13 @@
 export const siteConfig = {
   name: "Envoy Direct",
   brand: "ENVOY DIRECT",
-  title: "Envoy Direct — Website redesigns for local businesses",
-  seoTitle: "Envoy Direct — Website redesigns for local businesses",
+  navBrand: "envoydirect",
+  title: "Envoy Direct — Websites for local businesses",
+  seoTitle: "Envoy Direct — Websites for local businesses",
   description:
-    "Envoy Direct is a one-person shop serving Orillia and Simcoe County. Jesse redesigns websites for local businesses so customers can find you, trust you, and call or book.",
+    "Envoy Direct is a one-person shop serving Orillia and Simcoe County. Jesse builds websites for local businesses so customers can find you, trust you, and call or book.",
   seoDescription:
-    "Website redesigns for local businesses in Orillia and Simcoe County. Jesse at Envoy Direct builds sites that bring in customers — one person, from first conversation to launch.",
+    "Websites for local businesses in Orillia and Simcoe County. Jesse at Envoy Direct builds sites that bring in customers — one person, from first conversation to launch.",
   email: "jesse03hiles@gmail.com",
   contactEmail: "jesse03hiles@gmail.com",
   location: "Orillia and Simcoe County",
@@ -22,27 +23,43 @@ export const siteConfig = {
   },
 } as const;
 
+export const heroNameLines = ["Envoy", "Direct"] as const;
+
+export const heroCopy = {
+  headline: "A website that brings in customers.",
+  lede: "I build sites for local businesses across Orillia and Simcoe County — so people can find you, trust you, and call or book.",
+} as const;
+
 export const heroStats = [
   { value: "1:1", label: "You work with me" },
-  { value: "48h", label: "Reply time" },
-  { value: "100%", label: "Direct, no hand-offs" },
+  { value: "48h", label: "Reply time", countTo: 48, suffix: "h" },
+  { value: "100%", label: "No hand-offs", countTo: 100, suffix: "%" },
 ] as const;
+
+export const storyChapters = [
+  { id: "top", num: "01", label: "Start" },
+  { id: "work", num: "02", label: "Work" },
+  { id: "process", num: "03", label: "Process" },
+  { id: "about", num: "04", label: "About" },
+  { id: "contact", num: "05", label: "Quote" },
+] as const;
+
+export const homeSectionIds = storyChapters.map((chapter) => chapter.id);
+
+export const workIntro = {
+  heading: "Sites people actually use.",
+  lede: "Quotes and booking live on the page — not a separate app. Two local businesses, two ways in.",
+} as const;
+
+export const aboutHeading = "Orillia based, building for Simcoe County.";
 
 export const socialLinks = [
   { label: "LinkedIn", href: siteConfig.links.linkedin },
   { label: "Fiverr", href: siteConfig.links.fiverr },
 ] as const;
 
-export const aboutPoints = [
-  "You work directly with me — design, build, and launch.",
-  "Scoped timelines and preview links shared early, every week.",
-  "Clear communication throughout. No agency hand-offs, ever.",
-  "Limited client roster, so every project gets real attention.",
-] as const;
-
 export const aboutParagraphs = [
-  "I'm an independent designer and developer. Envoy Direct is a one-person shop for local businesses in Orillia and Simcoe County who need a site that brings in work.",
-  "You get a clear timeline, preview links early, and a direct line to the person building the site.",
+  "I'm Jesse. Envoy Direct is a one-person shop for local businesses in Orillia and Simcoe County who need a site that brings in work.",
 ] as const;
 
 export const processSteps = [
@@ -90,8 +107,8 @@ export const contactFollowUps: Record<
     showSiteUrl: false,
   },
   "Booking or quote system": {
-    messagePlaceholder: "What do you want customers to be able to book or request?",
-    showSiteUrl: false,
+    messagePlaceholder: "What should people be able to request or book? Do you already have a site?",
+    showSiteUrl: true,
   },
   "Not sure yet": {
     messagePlaceholder: "Tell me a bit about what you're working on.",
@@ -103,12 +120,7 @@ export const faqItems = [
   {
     question: "What does a site usually cost?",
     answer:
-      "It depends on how many pages you need and whether you want quotes or booking built in. I'll give you a clear fixed price up front after a quick look at what you need.",
-  },
-  {
-    question: "How long does it take?",
-    answer:
-      "Two to four weeks for a typical redesign. You'll see real pages in the first few days.",
+      "It depends on how many pages you need and whether you want quotes or booking on the site. I'll give you a clear fixed price up front after a quick look at what you need.",
   },
   {
     question: "Do I need to know anything technical?",
@@ -128,6 +140,10 @@ export type Project = {
   previewImage: string;
   appUrl?: string;
   relatedService?: { label: string; href: string };
+  action?: {
+    title: string;
+    body: string;
+  };
   caseStudy: {
     problem: string;
     approach: string;
@@ -137,6 +153,7 @@ export type Project = {
     quote: string;
     attribution: string;
   };
+  spotlight?: readonly { value: string; label: string }[];
 };
 
 export const featuredProjects: Project[] = [
@@ -152,18 +169,26 @@ export const featuredProjects: Project[] = [
     stackLine: "Next.js + Supabase",
     previewImage: "/gunning-grounds-preview.png",
     appUrl: "https://gunning-grounds.vercel.app",
-    relatedService: { label: "Website redesigns", href: "/services" },
+    spotlight: [
+      { value: "Live", label: "Public marketing site" },
+      { value: "Quotes", label: "Step-by-step form" },
+    ],
+    relatedService: { label: "Quotes and booking", href: "/services#quotes-booking" },
+    action: {
+      title: "Quotes on the site",
+      body: "A Get a quote button in the header and on the phone. A short form — a few questions, not a voicemail. Every request lands in one inbox they can check.",
+    },
     caseStudy: {
       problem:
-        "The work was strong, but the website didn't match it — and there was no reliable way for people to request a quote.",
+        "They needed a site that showed the quality of the work and let homeowners request a quote without playing phone tag.",
       approach:
-        "Clear services, photos that show the quality of the work, big buttons on mobile, and a step-by-step quote form instead of a generic contact box.",
+        "A new site built around that: real photos, clear services, big buttons on mobile, and a step-by-step quote form instead of a generic contact box.",
       result:
-        "A live marketing site, a custom quote flow, and a private dashboard for incoming leads — so the business can follow up instead of guessing who called.",
+        "A marketing site, a custom quote flow, and a private dashboard for incoming leads — so the business can follow up instead of guessing who called.",
     },
     testimonial: {
       quote:
-        "The old site didn't do our work justice, and quotes meant a lot of missed calls. Jesse built something that looks like us and lets people request a quote on their phone — every lead shows up in one place.",
+        "We needed something that looks like us and lets people request a quote on their phone — every lead shows up in one place.",
       attribution: "Owner, Gunning Grounds Service",
     },
   },
@@ -179,12 +204,20 @@ export const featuredProjects: Project[] = [
     stackLine: "Next.js + Supabase",
     previewImage: "/stay-connected-preview.png",
     appUrl: "https://stay-connected-eta.vercel.app",
-    relatedService: { label: "Speed & mobile fixes", href: "/services" },
+    spotlight: [
+      { value: "Live", label: "Public site & booking" },
+      { value: "Simple", label: "Large type, calm UI" },
+    ],
+    relatedService: { label: "Quotes and booking", href: "/services#quotes-booking" },
+    action: {
+      title: "Booking on the site",
+      body: "Book a session from the site itself — large type, a few steps, phone and email always in reach. Bookings show up in a private admin area. Same idea as a quote form, with a time instead of a request.",
+    },
     caseStudy: {
       problem:
-        "Seniors and families needed a calm, trustworthy way to book patient digital help — without flashy sites that feel overwhelming.",
+        "Seniors and families needed a calm, trustworthy way to book patient digital help — without a flashy site that feels overwhelming.",
       approach:
-        "Large type, clear steps, and persistent phone and email so someone who isn't comfortable with tech can still get through. The same bar I hold for a local business site.",
+        "A new site built around that: large type, clear steps, and persistent phone and email so someone who isn't comfortable with tech can still get through.",
       result:
         "A public site, a simple booking flow, newsletter signup, and a private admin area for bookings and updates.",
     },
@@ -219,60 +252,73 @@ export const otherBuilds: Project[] = [
         "Chrome Web Store listing, a marketing site, live phone preview for Gmail compose, and a privacy-first local-only path with no data collection.",
     },
   },
-  {
-    id: "resume-job-matcher",
-    name: "Resume-matched job finder",
-    status: "Coming soon",
-    tagline: "Top 10 job matches from your resume.",
-    description:
-      "A mobile app that finds listings on major job platforms and ranks the best fits against your resume — so you see the top ten opportunities worth applying to, not an endless feed.",
-    outcomes: ["Resume match", "Top 10 list", "Mobile app"],
-    stack: ["React Native", "Expo", "Node.js", "Supabase"],
-    stackLine: "React Native + Supabase",
-    previewImage: "/coming-soon-job-matcher.png",
-    caseStudy: {
-      problem:
-        "Job seekers drown in listings that don't match their skills or experience — searching multiple boards and guessing fit wastes hours every week.",
-      approach:
-        "A mobile-first flow: upload or paste a resume, pull listings from major platforms, score relevance, and surface a ranked top-ten list with clear match reasons.",
-      result:
-        "In progress — mobile app shell and matching pipeline planned for a first release that delivers ranked jobs from your resume on iOS and Android.",
-    },
-  },
 ];
 
 export const services = [
   {
-    title: "Website redesigns",
+    title: "Business websites",
     description:
       "A clear, professional site that shows what you do and makes it easy to call, book, or request a quote.",
-    deliverables: ["New look", "Clear services", "Working contact", "Ready to launch"],
+    deliverables: ["Clear services", "Works on a phone", "Working contact", "Ready to launch"],
     workHref: "/work/gunning-grounds",
     workLabel: "See Gunning Grounds",
   },
   {
-    title: "Booking & quote systems",
-    description: "Let customers request a quote or pick a time without the back-and-forth.",
-    deliverables: ["Quote requests", "Online booking", "Lead inbox", "Follow-up ready"],
-    workHref: "/work/gunning-grounds#quote-flow",
-    workLabel: "See the quote flow",
+    id: "quotes-booking",
+    title: "Quotes and booking",
+    description:
+      "Not a separate app. A page on their site — Request a quote, or Book a time — with a button that's easy to tap on a phone. Every request lands in one inbox.",
+    deliverables: ["A page on the site", "A button people actually tap", "One inbox for leads"],
+    workHref: "/work/gunning-grounds#on-the-site",
+    workLabel: "See quotes on Gunning Grounds",
   },
   {
-    title: "Speed & mobile fixes",
+    title: "Easy on a phone",
     description:
-      "Fast on phones, easy to tap, and built so people don't leave before they reach you.",
-    deliverables: ["Works on phones", "Faster load", "Easy buttons", "Simple to use"],
+      "Large type, obvious buttons, and a path someone can finish with a thumb. If a non-technical person can't use it, it isn't done.",
+    deliverables: ["Works on phones", "Easy buttons", "Simple to use"],
     workHref: "/work/stay-connected",
     workLabel: "See Stay Connected",
   },
-];
+] as const;
+
+export const quoteBookingHow = {
+  heading: "How it gets on the site",
+  lede: "Quotes and booking live on the website. They don't require a new app, a login, or software the owner has to learn.",
+  steps: [
+    {
+      title: "A page",
+      body: "Request a quote, or Book a time. Short, plain language, written for a phone.",
+    },
+    {
+      title: "A button",
+      body: "In the header and after the services — the thing people actually tap instead of calling and hoping.",
+    },
+    {
+      title: "An inbox",
+      body: "Every request shows up in one place they can check. Follow-up happens there, not in a pile of voicemails.",
+    },
+  ],
+  paths: [
+    {
+      title: "New site",
+      body: "It's built in from the start. That's how Gunning Grounds takes quotes and Stay Connected takes bookings.",
+    },
+    {
+      title: "Site they already have",
+      body: "I add the page and the button to what they have. If the current site isn't worth keeping, we fold quotes or booking into a new one.",
+    },
+  ],
+} as const;
 
 export const seoKeywords = [
   "Envoy Direct",
   "Jesse Envoy",
-  "website redesign Orillia",
-  "website redesign Simcoe County",
   "small business website Orillia",
-  "contractor website redesign",
+  "small business website Simcoe County",
+  "contractor website",
   "booking and quote website",
+  "online quote system",
+  "website booking system",
+  "quote request form",
 ];

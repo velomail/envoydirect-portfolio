@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteNav } from "@/components/site-nav";
-import { SiteSplitShell, SplitAsideCta } from "@/components/site-split-shell";
+import { PageShell } from "@/components/page-shell";
 import { featuredProjects, siteConfig } from "@/lib/site-config";
 
 type CaseStudyPageProps = {
@@ -39,133 +36,128 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     notFound();
   }
 
-  const isGunning = project.id === "gunning-grounds";
-
   return (
-    <>
-      <SiteNav />
-      <SiteSplitShell>
-        <main id="main-content" tabIndex={-1} className="xl:grid xl:grid-cols-2 xl:divide-x xl:divide-border">
-          <article className="px-5 pb-20 pt-28 sm:px-8 sm:pb-28 sm:pt-32 xl:max-w-none">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            Case study
-          </p>
-          <div className="mt-4 flex flex-wrap items-center gap-3">
-            <h1 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">
-              {project.name}
-            </h1>
-            <span className="inline-flex items-center rounded-full bg-accent px-2.5 py-0.5 text-xs font-medium text-accent-foreground">
-              {project.status}
-            </span>
-          </div>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            {project.description}
-          </p>
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            {project.appUrl ? (
-              <a
-                href={project.appUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground"
+    <PageShell>
+      <main id="main-content" tabIndex={-1}>
+        <article className="page-wrap pb-20 pt-20 md:pb-28 md:pt-32">
+          <div className="border-t border-border pt-5 md:pt-6">
+            <p className="text-[13px] font-medium text-muted-foreground">Case study</p>
+            <div className="mt-10 md:mt-14">
+              <h1 className="t-display text-[3.25rem] sm:text-[4rem] md:text-[5.5rem]">
+                {project.name}
+              </h1>
+              <p className="mt-4 text-[14px] text-muted-foreground">{project.tagline}</p>
+              <p className="mt-9 max-w-[32rem] text-[19px] leading-[1.5]">{project.description}</p>
+              <p className="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-[14px]">
+                {project.appUrl ? (
+                  <a
+                    href={project.appUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link"
+                  >
+                    Visit the site
+                  </a>
+                ) : null}
+                {project.relatedService ? (
+                  <a href={project.relatedService.href} className="link">
+                    {project.relatedService.label}
+                  </a>
+                ) : null}
+              </p>
+
+              {project.action ? (
+                <div
+                  id="on-the-site"
+                  className="mt-14 max-w-[32rem] scroll-mt-8 border-t border-border pt-8"
+                >
+                  <p className="t-label text-muted-foreground">On the site</p>
+                  <h2 className="t-title mt-4 text-[1.75rem] md:text-[2.25rem]">
+                    {project.action.title}
+                  </h2>
+                  <p className="mt-4 text-[17px] leading-[1.6] text-muted-foreground">
+                    {project.action.body}
+                  </p>
+                </div>
+              ) : null}
+
+              <figure className="mt-14 border border-border bg-panel">
+                <div className="relative aspect-[16/9] bg-panel">
+                  <Image
+                    src={project.previewImage}
+                    alt={`${project.name} website`}
+                    fill
+                    quality={90}
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 1120px"
+                    priority
+                  />
+                </div>
+              </figure>
+
+              <div
+                className="mt-16 grid gap-8 border-t border-border pt-8 sm:grid-cols-3"
               >
-                Visit live site
-                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            ) : null}
-            {project.relatedService ? (
-              <a
-                href={project.relatedService.href}
-                className="inline-flex rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {project.relatedService.label}
-              </a>
-            ) : null}
-          </div>
-
-          <div className="mt-12 grid gap-4 sm:grid-cols-2">
-            <figure className="overflow-hidden rounded-3xl border border-dashed border-border bg-secondary/60">
-              <div className="flex aspect-[16/9] items-center justify-center px-6 text-center">
-                <p className="text-sm text-muted-foreground">Before: previous site (photo to add)</p>
+                <div>
+                  <p className="t-label text-muted-foreground">Need</p>
+                  <p className="mt-3 text-[15px] leading-[1.55] text-muted-foreground">
+                    {project.caseStudy.problem}
+                  </p>
+                </div>
+                <div>
+                  <p className="t-label text-muted-foreground">Build</p>
+                  <p className="mt-3 text-[15px] leading-[1.55] text-muted-foreground">
+                    {project.caseStudy.approach}
+                  </p>
+                </div>
+                <div>
+                  <p className="t-label text-muted-foreground">Result</p>
+                  <p className="mt-3 text-[15px] leading-[1.55] text-muted-foreground">
+                    {project.caseStudy.result}
+                  </p>
+                </div>
               </div>
-              <figcaption className="border-t border-dashed border-border px-4 py-3 text-xs text-muted-foreground">
-                Before: previous site
-              </figcaption>
-            </figure>
-            <figure className="overflow-hidden rounded-3xl border border-border bg-card">
-              <div className="relative aspect-[16/9] bg-secondary">
-                <Image
-                  src={project.previewImage}
-                  alt={`After: redesigned ${project.name} site`}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
+
+              <p className="mt-10 text-[13px] text-muted-foreground">
+                Built on {project.stackLine}
+              </p>
+
+              {project.testimonial ? (
+                <blockquote className="mt-14 max-w-[36rem] border-t border-border pt-8">
+                  <p className="t-title text-[1.75rem] leading-[1.2] md:text-[2.25rem]">
+                    &ldquo;{project.testimonial.quote}&rdquo;
+                  </p>
+                  <footer className="mt-5 text-[14px] text-muted-foreground">
+                    {project.testimonial.attribution}
+                  </footer>
+                </blockquote>
+              ) : null}
+
+              <div className="mt-16 grid gap-10 border-t border-border pt-10 md:grid-cols-2">
+                <div className="max-w-[26rem]">
+                  <p className="text-[15px] font-medium">Like what you see?</p>
+                  <p className="mt-2 text-[15px] leading-[1.55] text-muted-foreground">
+                    I take on a small number of local business projects at a time. Tell me what you
+                    need and I&apos;ll reply within 48 hours.
+                  </p>
+                  <Link href="/#contact" className="link mt-3 inline-block text-[14px]">
+                    Get a quote
+                  </Link>
+                </div>
+                <div className="max-w-[26rem]">
+                  <p className="text-[15px] font-medium">More work</p>
+                  <p className="mt-2 text-[15px] leading-[1.55] text-muted-foreground">
+                    Websites and booking sites for Orillia and Simcoe County.
+                  </p>
+                  <Link href="/#work" className="link mt-3 inline-block text-[14px]">
+                    Back to work
+                  </Link>
+                </div>
               </div>
-              <figcaption className="border-t border-border px-4 py-3 text-xs text-muted-foreground">
-                After: redesigned site
-              </figcaption>
-            </figure>
-          </div>
-
-          <div className="mt-14 grid gap-10 sm:grid-cols-3">
-            <div>
-              <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-                Problem
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {project.caseStudy.problem}
-              </p>
-            </div>
-            <div>
-              <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-                Approach
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {project.caseStudy.approach}
-              </p>
-            </div>
-            <div id={isGunning ? "quote-flow" : undefined} className="scroll-mt-24">
-              <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-                Result
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {project.caseStudy.result}
-              </p>
             </div>
           </div>
-
-          <p className="mt-10 text-xs text-muted-foreground">Built on {project.stackLine}</p>
-
-          {project.testimonial ? (
-            <blockquote className="mt-14 rounded-3xl border border-border bg-card px-6 py-8 sm:px-8">
-              <p className="font-serif text-xl font-medium leading-relaxed tracking-tight sm:text-2xl">
-                &ldquo;{project.testimonial.quote}&rdquo;
-              </p>
-              <footer className="mt-5 text-sm text-muted-foreground">
-                — {project.testimonial.attribution}
-              </footer>
-            </blockquote>
-          ) : null}
-
-          <div className="mt-12">
-            <Link
-              href="/#contact"
-              className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground"
-            >
-              Get a quote
-              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </div>
-          </article>
-          <SplitAsideCta
-            title="Like what you see?"
-            body="I take on a small number of local business projects at a time. Tell me what you need and I'll reply within 48 hours."
-          />
-        </main>
-      </SiteSplitShell>
-      <SiteFooter />
-    </>
+        </article>
+      </main>
+    </PageShell>
   );
 }

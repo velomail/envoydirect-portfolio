@@ -1,101 +1,59 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { homeSectionIds, siteConfig } from "@/lib/site-config";
+import { useActiveSection } from "@/hooks/use-active-section";
 
 const links = [
-  { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Work", href: "/#work", section: "work" },
+  { label: "About", href: "/#about", section: "about" },
+  { label: "Services", href: "/services", section: null },
+  { label: "Blog", href: "/blog", section: null },
+  { label: "Contact", href: "/#contact", section: "contact" },
 ] as const;
 
+const idleSectionIds: string[] = [];
+
 export function SiteNav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState<string>("");
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const sections = links
-      .map((l) => document.querySelector(`#${l.href.split("#")[1]}`))
-      .filter(Boolean) as Element[];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(`/#${e.target.id}`);
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" },
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, []);
+  const pathname = usePathname();
+  const activeSection = useActiveSection(pathname === "/" ? homeSectionIds : idleSectionIds);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-border bg-background/80 backdrop-blur-md"
-          : "border-b border-transparent bg-background/0",
-      )}
-    >
+    <header className="page-wrap flex flex-wrap items-center justify-between gap-x-4 gap-y-3 pt-14 md:pt-20">
+      <a
+        href="/#top"
+        className="text-[15px] font-semibold tracking-[-0.01em] transition-colors hover:text-accent"
+      >
+        {siteConfig.navBrand}
+      </a>
       <nav
         aria-label="Primary"
-        className="mx-auto flex min-h-16 max-w-6xl flex-col items-center justify-center gap-3 px-5 py-3 sm:px-8 md:h-auto md:flex-row md:flex-wrap md:gap-x-8 md:gap-y-2 md:py-4"
+        className="flex flex-wrap justify-end gap-4 text-[13px] text-muted-foreground sm:gap-7 sm:text-[14px] md:gap-9"
       >
-        <a href="/#top" className="flex flex-col items-center text-center">
-          <span className="text-lg font-semibold tracking-[0.14em] md:text-sm md:tracking-[0.12em]">
-            ENVOY DIRECT
-          </span>
-          <span className="mt-1 max-w-[17rem] font-mono text-[0.625rem] uppercase leading-snug tracking-[0.14em] text-muted-foreground md:mt-0.5">
-            Websites for local businesses
-          </span>
-        </a>
+        {links.map((link) => {
+          const active =
+            link.section && pathname === "/"
+              ? activeSection === link.section
+              : link.href === "/blog"
+                ? pathname === "/blog" || pathname.startsWith("/blog/")
+                : link.href.startsWith("/") &&
+                  !link.href.includes("#") &&
+                  pathname === link.href;
 
-        <div className="hidden items-center gap-7 md:flex">
-          {links.map((l) => (
+          return (
             <a
-              key={l.href}
-              href={l.href}
+              key={link.href}
+              href={link.href}
               className={cn(
-                "relative text-sm transition-colors hover:text-foreground",
-                active === l.href ? "text-foreground" : "text-muted-foreground",
+                "transition-colors hover:text-foreground",
+                active && "text-foreground",
               )}
             >
-              {l.label}
-              <span
-                className={cn(
-                  "absolute -bottom-1.5 left-1/2 h-px -translate-x-1/2 bg-foreground transition-all duration-300",
-                  active === l.href ? "w-full" : "w-0",
-                )}
-              />
+              {link.label}
             </a>
-          ))}
-        </div>
-
-        <div className="hidden items-center gap-2.5 md:flex">
-          <span className="hidden items-center gap-2 rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground lg:flex">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
-              <span className="relative inline-flex size-2 rounded-full bg-success" />
-            </span>
-            Open for work
-          </span>
-          <a
-            href="/#contact"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
-          >
-            Get a quote
-            <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </div>
+          );
+        })}
       </nav>
     </header>
   );

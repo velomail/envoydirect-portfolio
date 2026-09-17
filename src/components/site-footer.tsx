@@ -4,56 +4,42 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border py-12">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-5 text-center sm:px-8">
-        <a href="/#top" className="text-sm font-semibold tracking-[0.12em]">
-          {siteConfig.brand}
-        </a>
-        <p className="text-sm text-muted-foreground">
-          {siteConfig.name} · Serving {siteConfig.location}
-        </p>
-
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            {siteConfig.email}
-          </a>
+    <footer
+      className="page-wrap pt-20 md:pt-28"
+      style={{ paddingBottom: "max(2.5rem, calc(2.5rem + env(safe-area-inset-bottom)))" }}
+    >
+      <div className="flex flex-col gap-4 border-t border-border pt-6 text-[13px] text-muted-foreground md:flex-row md:items-center md:justify-between">
+        <span>
+          {siteConfig.name}. {siteConfig.locationShort}, {year}.
+        </span>
+        <span className="flex flex-wrap gap-x-5 gap-y-2">
           {socialLinks.map((social) => (
             <a
               key={social.label}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors hover:text-foreground"
+              className="transition-colors hover:text-foreground"
             >
               {social.label}
             </a>
           ))}
-        </div>
-
-        <p className="w-full border-t border-border pt-6 text-xs text-muted-foreground">
-          © {year} {siteConfig.name}. All rights reserved.
           <a
-            href="/services"
-            className="ml-3 text-muted-foreground/70 transition-colors hover:text-muted-foreground"
+            href={`mailto:${siteConfig.email}`}
+            className="transition-colors hover:text-foreground"
           >
+            Email
+          </a>
+          <a href="/services" className="transition-colors hover:text-foreground">
             Services
           </a>
-          <a
-            href="/process"
-            className="ml-3 text-muted-foreground/70 transition-colors hover:text-muted-foreground"
-          >
-            Process
+          <a href="/blog" className="transition-colors hover:text-foreground">
+            Blog
           </a>
-          <a
-            href="/other-builds"
-            className="ml-3 text-muted-foreground/70 transition-colors hover:text-muted-foreground"
-          >
+          <a href="/other-builds" className="transition-colors hover:text-foreground">
             Other builds
           </a>
-        </p>
+        </span>
       </div>
     </footer>
   );

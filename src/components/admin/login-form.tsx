@@ -48,7 +48,7 @@ export function LoginForm() {
           required
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-ring focus:ring-2 focus:ring-ring/20"
+          className="w-full border-0 border-b border-border bg-transparent px-0 py-3 text-base outline-none transition-colors focus:border-foreground"
         />
       </div>
       {error ? (
@@ -59,7 +59,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-70"
+        className="inline-flex w-full items-center justify-center gap-2 bg-foreground px-6 py-3 text-[15px] font-medium text-background transition-colors hover:bg-accent disabled:opacity-70"
       >
         {loading ? (
           <>

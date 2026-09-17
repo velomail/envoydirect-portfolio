@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Newsreader } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 import { ProjectTypeProvider } from "@/components/project-type-context";
 import { ScrollProgress } from "@/components/scroll-progress";
@@ -7,23 +7,11 @@ import { getStructuredData } from "@/lib/structured-data";
 import { seoKeywords, siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-const geistSans = Geist({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-archivo",
   display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-  display: "swap",
-});
-
-const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-newsreader",
-  style: ["normal", "italic"],
-  display: "swap",
+  axes: ["wdth"],
 });
 
 export const viewport: Viewport = {
@@ -31,7 +19,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: "cover",
-  themeColor: "#faf9f7",
+  themeColor: "#eeeeea",
   colorScheme: "light",
 };
 
@@ -67,10 +55,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en-CA"
-      className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} bg-background`}
-    >
+    <html lang="en-CA" className={`${archivo.variable} bg-background`}>
       <body className="font-sans antialiased">
         <a href="#main-content" className="skip-link">
           Skip to main content

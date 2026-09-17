@@ -9,14 +9,14 @@ type ProjectTypeContextValue = {
 };
 
 const defaultValue: ProjectTypeContextValue = {
-  projectType: "Redesign",
+  projectType: "New website",
   setProjectType: () => {},
 };
 
 const ProjectTypeContext = createContext<ProjectTypeContextValue | null>(null);
 
 export function ProjectTypeProvider({ children }: { children: ReactNode }) {
-  const [projectType, setProjectType] = useState<ProjectType>("Redesign");
+  const [projectType, setProjectType] = useState<ProjectType>("New website");
 
   return (
     <ProjectTypeContext.Provider value={{ projectType, setProjectType }}>

@@ -42,7 +42,7 @@ export function Reveal({
           observer.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0, rootMargin: "0px 0px -12% 0px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -56,8 +56,8 @@ export function Reveal({
       className={cn(
         "transition-all duration-700 ease-out will-change-transform motion-reduce:transition-none",
         visible
-          ? "translate-y-0 opacity-100 blur-0"
-          : "translate-y-6 opacity-0 blur-[2px]",
+          ? "translate-y-0 opacity-100"
+          : "translate-y-5 opacity-0",
         className,
       )}
     >

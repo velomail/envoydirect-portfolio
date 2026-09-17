@@ -1,81 +1,50 @@
-import { ArrowUpRight, Check } from "lucide-react";
 import { AboutPortrait } from "@/components/about-portrait";
-import { Reveal } from "@/components/reveal";
-import { SectionLabel } from "@/components/section-label";
-import { aboutParagraphs, aboutPoints, siteConfig } from "@/lib/site-config";
-import { cn } from "@/lib/utils";
+import { SectionFrame } from "@/components/section-frame";
+import { aboutHeading, aboutParagraphs, faqItems } from "@/lib/site-config";
 
 type AboutProps = {
   className?: string;
-  hidePortrait?: boolean;
-  align?: "center" | "start";
+  nextHref?: string;
+  nextLabel?: string;
 };
 
-export function About({ className, hidePortrait = false, align = "center" }: AboutProps) {
-  const centered = align === "center";
-
+export function About({
+  className,
+  nextHref = "#contact",
+  nextLabel = "Next — get a quote",
+}: AboutProps) {
   return (
-    <section className={cn("scroll-mt-20 border-t border-border py-20 sm:py-28", className)}>
-      <div
-        className={cn(
-          "mx-auto max-w-6xl px-5 sm:px-8",
-          centered ? "text-center" : "text-left",
-        )}
-      >
-        <Reveal>
-          <SectionLabel centered={centered}>About</SectionLabel>
-        </Reveal>
-
-        <Reveal delay={60}>
-          <h2
-            className={cn(
-              "mt-6 max-w-xl text-balance font-serif text-4xl font-medium tracking-tight sm:text-5xl",
-              centered && "mx-auto",
-            )}
-          >
-            Hi, I&apos;m Jesse.
-          </h2>
-        </Reveal>
-
-        <Reveal delay={120}>
-          <div className="mx-auto mt-6 max-w-2xl space-y-5 text-lg leading-relaxed text-muted-foreground">
-            {aboutParagraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-            ))}
-          </div>
-        </Reveal>
-
-        {hidePortrait ? null : (
-          <Reveal delay={180} className="mx-auto mt-10 max-w-sm">
-            <AboutPortrait priority />
-          </Reveal>
-        )}
-
-        <ul className="mx-auto mt-10 grid max-w-3xl gap-3 text-left sm:grid-cols-2">
-          {aboutPoints.map((point, index) => (
-            <Reveal as="li" key={point} delay={200 + index * 60}>
-              <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
-                <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
-                  <Check className="size-3" strokeWidth={3} />
-                </span>
-                <span className="text-sm leading-snug text-foreground">{point}</span>
-              </div>
-            </Reveal>
-          ))}
-        </ul>
-
-        <Reveal delay={420}>
-          <a
-            href={siteConfig.links.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group mt-8 inline-flex items-center gap-1 text-sm font-medium text-foreground"
-          >
-            LinkedIn
-            <ArrowUpRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </Reveal>
+    <SectionFrame id="about" label="About" className={className}>
+      <h2 className="t-title text-[2.5rem] md:text-[3.25rem]">{aboutHeading}</h2>
+      {aboutParagraphs.map((paragraph) => (
+        <p
+          key={paragraph.slice(0, 32)}
+          className="mt-6 max-w-[32rem] text-[17px] leading-[1.6] text-muted-foreground"
+        >
+          {paragraph}
+        </p>
+      ))}
+      <div className="mt-10 max-w-[280px]">
+        <AboutPortrait priority />
       </div>
-    </section>
+
+      <p className="mt-12 text-[13px] font-medium text-muted-foreground">Common questions</p>
+      <dl className="mt-4 border-t border-border">
+        {faqItems.map((item) => (
+          <div key={item.question} className="border-b border-border py-5">
+            <dt className="text-[15px] font-medium">{item.question}</dt>
+            <dd className="mt-1 max-w-[40rem] text-[15px] leading-[1.55] text-muted-foreground">
+              {item.answer}
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <p className="mt-10 text-[15px]">
+        <a href={nextHref} className="link">
+          {nextLabel}
+        </a>
+      </p>
+    </SectionFrame>
   );
 }

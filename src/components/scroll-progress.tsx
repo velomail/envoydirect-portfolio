@@ -23,7 +23,7 @@ export function ScrollProgress() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-y-0 left-0 z-[60] hidden w-[3px] bg-border motion-reduce:hidden lg:block"
+      className="pointer-events-none fixed inset-x-0 top-0 z-[60] hidden h-[2px] bg-border motion-reduce:hidden lg:block"
       role="progressbar"
       aria-hidden="true"
       aria-valuemin={0}
@@ -31,8 +31,8 @@ export function ScrollProgress() {
       aria-valuenow={Math.round(progress * 100)}
     >
       <div
-        className="w-full bg-primary transition-[height] duration-75 ease-out"
-        style={{ height: `${progress * 100}%` }}
+        className="h-full bg-foreground transition-[width] duration-75 ease-out"
+        style={{ width: `${progress * 100}%` }}
       />
     </div>
   );
