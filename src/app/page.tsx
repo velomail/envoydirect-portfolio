@@ -3,7 +3,6 @@ import { Contact } from "@/components/contact";
 import { Hero } from "@/components/hero";
 import { PageShell } from "@/components/page-shell";
 import { Process } from "@/components/process";
-import { StatBand } from "@/components/stat-band";
 import { StoryRail } from "@/components/story-rail";
 import { SystemsTeaser } from "@/components/systems-teaser";
 import { Work } from "@/components/work";
@@ -14,7 +13,6 @@ export default function HomePage() {
       <StoryRail />
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <StatBand />
         <Work showStory />
         <Process
           headingAs="h2"

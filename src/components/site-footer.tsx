@@ -1,4 +1,4 @@
-import { siteConfig, socialLinks } from "@/lib/site-config";
+import { remoteGigLink, siteConfig, socialLinks } from "@/lib/site-config";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -44,6 +44,17 @@ export function SiteFooter() {
           </a>
         </span>
       </div>
+      <p className="mt-3 text-[12px] text-muted-foreground/80">
+        <a
+          href={remoteGigLink.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-colors hover:text-foreground"
+        >
+          {remoteGigLink.label}
+        </a>
+        {" — "}separate from local Orillia / Simcoe work.
+      </p>
     </footer>
   );
 }
