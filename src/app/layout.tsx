@@ -1,16 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo } from "next/font/google";
+import { IBM_Plex_Sans, Syne } from "next/font/google";
 import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 import { ProjectTypeProvider } from "@/components/project-type-context";
 import { getStructuredData } from "@/lib/structured-data";
 import { seoKeywords, siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-const archivo = Archivo({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-archivo",
+  variable: "--font-syne",
   display: "swap",
-  axes: ["wdth"],
+  weight: ["500", "600", "700", "800"],
+});
+
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  variable: "--font-ibm-plex-sans",
+  display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 export const viewport: Viewport = {
@@ -18,8 +25,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   viewportFit: "cover",
-  themeColor: "#eeeeea",
-  colorScheme: "light",
+  themeColor: "#0B0D10",
+  colorScheme: "dark",
 };
 
 export const metadata: Metadata = {
@@ -54,7 +61,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-CA" className={`${archivo.variable} bg-background`}>
+    <html lang="en-CA" className={`${syne.variable} ${ibmPlexSans.variable} bg-background`}>
       <body className="font-sans antialiased">
         <a href="#main-content" className="skip-link">
           Skip to main content

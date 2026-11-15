@@ -21,26 +21,34 @@ function PrimaryProof({ project }: { project: Project }) {
   const host = hostFromUrl(project.appUrl);
 
   return (
-    <article className="grid gap-5 sm:grid-cols-[minmax(0,10.5rem)_minmax(0,1fr)] sm:gap-6 md:grid-cols-[minmax(0,12rem)_minmax(0,1fr)]">
-      <div className="relative aspect-[16/10] overflow-hidden border border-border bg-panel">
+    <article className="grid gap-5 sm:grid-cols-[minmax(0,11rem)_minmax(0,1fr)] sm:gap-6 md:grid-cols-[minmax(0,12.5rem)_minmax(0,1fr)]">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-border bg-panel">
         <Image
           src={project.previewImage}
           alt={`${project.name} preview`}
           fill
           priority
           quality={90}
-          sizes="(min-width: 768px) 192px, 100vw"
+          sizes="(min-width: 768px) 200px, 100vw"
           className="object-cover object-top"
         />
       </div>
       <div className="min-w-0 self-center">
-        <h3 className="text-[1.15rem] font-semibold tracking-[-0.02em]">{project.name}</h3>
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <h3 className="font-[family-name:var(--font-heading)] text-[1.15rem] font-semibold tracking-[-0.02em]">
+            {project.name}
+          </h3>
+          <span className="text-[12px] uppercase tracking-[0.12em] text-muted-foreground">
+            Quote on phone
+          </span>
+        </div>
         <p className="mt-2 max-w-[34rem] text-[15px] leading-[1.55] text-muted-foreground">
-          Homeowners request a quote on their phone — every lead lands in one inbox.
+          {project.proofLine ??
+            "Homeowners request a quote on their phone — every lead lands in one inbox."}
         </p>
         {project.testimonial ? (
           <p className="mt-3 max-w-[34rem] text-[14px] leading-[1.5] text-muted-foreground">
-            <span className="text-foreground">&ldquo;{project.testimonial.quote}&rdquo;</span>
+            <span className="text-foreground/90">&ldquo;{project.testimonial.quote}&rdquo;</span>
             <span className="mt-1 block">{project.testimonial.attribution}</span>
           </p>
         ) : null}
@@ -72,7 +80,8 @@ function QuietProof({ project }: { project: Project }) {
       <p>
         <span className="font-medium text-foreground">{project.name}</span>
         <span aria-hidden="true"> — </span>
-        Booking on the page, large type, calm for people who aren&apos;t comfortable with tech.
+        {project.proofLine ??
+          "Booking on the page, large type, calm for people who aren't comfortable with tech."}
       </p>
       <p className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[14px]">
         {project.appUrl ? (
@@ -141,7 +150,7 @@ export function Work({
                   )}
                 >
                   <div className="min-w-0 lg:col-span-7">
-                    <h2 className="t-display text-[clamp(2.35rem,9vw,5.5rem)]">{project.name}</h2>
+                    <h2 className="t-display text-[clamp(2.1rem,7vw,4.25rem)]">{project.name}</h2>
                     <p className="mt-3 text-[14px] text-muted-foreground md:mt-4">{project.tagline}</p>
                     <p className="mt-5 max-w-[32rem] text-[17px] leading-[1.5] md:mt-9 md:text-[19px]">
                       {project.description}
@@ -173,7 +182,7 @@ export function Work({
                     </p>
                   </div>
                   <div className="order-first min-w-0 lg:order-none lg:col-span-5">
-                    <div className="relative aspect-[16/10] w-full overflow-hidden border border-border bg-panel">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-border bg-panel">
                       <Image
                         src={project.previewImage}
                         alt={`${project.name} preview`}
