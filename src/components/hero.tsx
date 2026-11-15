@@ -1,28 +1,32 @@
 import Link from "next/link";
-import { heroCopy, makeOffers } from "@/lib/site-config";
+import { heroCopy } from "@/lib/site-config";
 
-const growthSystems = makeOffers.filter(
-  (offer) => offer.id === "reactivation" || offer.id === "review-engine",
-);
+const growthSystems = [
+  {
+    name: "Reactivation",
+    what: "Texts quiet customers a personal reason to come back.",
+  },
+  {
+    name: "Review Engine",
+    what: "Asks for the review after a visit — good scores go public.",
+  },
+] as const;
 
 function HeroSystemsPanel() {
   return (
-    <aside className="rounded-lg border border-border bg-panel px-5 py-6 sm:px-6 sm:py-7">
+    <aside className="rounded-lg bg-panel px-5 py-6 sm:px-6 sm:py-7">
       <p className="font-[family-name:var(--font-heading)] text-[1.15rem] font-semibold tracking-[-0.02em] text-foreground sm:text-[1.25rem]">
-        After the site: growth systems
+        After the site, you keep growing
       </p>
       <p className="mt-2 text-[14px] leading-[1.5] text-muted-foreground">
-        Optional SMS that keeps working after launch — win customers back or ask for the review.
+        Optional systems stay on after launch — same person, same theme — so the business keeps winning customers back and asking for reviews.
       </p>
 
-      <ul className="mt-5 space-y-4 border-t border-border pt-5">
-        {growthSystems.map((offer) => (
-          <li key={offer.id}>
-            <p className="text-[14px] font-medium text-foreground">
-              {offer.name}
-              <span className="ml-2 font-normal text-muted-foreground">{offer.price}</span>
-            </p>
-            <p className="mt-1 text-[13px] leading-[1.45] text-muted-foreground">{offer.what}</p>
+      <ul className="mt-5 space-y-3">
+        {growthSystems.map((system) => (
+          <li key={system.name}>
+            <p className="text-[14px] font-medium text-foreground">{system.name}</p>
+            <p className="mt-0.5 text-[13px] leading-[1.45] text-muted-foreground">{system.what}</p>
           </li>
         ))}
       </ul>
