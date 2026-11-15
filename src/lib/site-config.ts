@@ -311,6 +311,53 @@ export const quoteBookingHow = {
   ],
 } as const;
 
+export const systemsTeaser = {
+  heading: "After the site is live.",
+  lede: "Optional systems can invite past customers back and ask for reviews the right way — same one-person shop, same local-business focus.",
+  ctaLabel: "See the systems",
+  ctaHref: "/systems",
+} as const;
+
+export const systemsPage = {
+  heading: "Systems that follow up.",
+  lede: "After the website is live, these are done-for-you SMS systems for local service businesses — quiet hours, consent, and opt-outs built in. I can build systems like these for your shop; more are coming soon.",
+  comingSoon:
+    "More systems are on the way. If you need something adjacent — follow-ups after quotes, reminders, or another quiet workflow — ask. I build them one client at a time.",
+  partnersNote:
+    "Agencies who want the same engines under their own brand can ask about partnering — it stays secondary to the owner-facing work.",
+  ctaLabel: "Talk about a system",
+  ctaHref: "/#contact",
+} as const;
+
+export const liveSystems = [
+  {
+    id: "reactivation",
+    name: "Reactivation",
+    tagline: "Bring back the customers you already earned.",
+    description:
+      "I clean your lapsed list, consent-check it, and text a few people a day inside quiet hours with a personal reason to come back. Replies are handled from your approved FAQ; interested customers get your booking link, and you get an alert.",
+    outcomes: [
+      "Cleaned, consent-checked list",
+      "Daily texts inside quiet hours",
+      "FAQ replies + booking link on interest",
+      "Opt-outs honoured immediately",
+    ],
+  },
+  {
+    id: "review-engine",
+    name: "Review Engine",
+    tagline: "Ask for the review. Keep the complaint private.",
+    description:
+      "After a finished visit, one rating text goes out inside quiet hours. A 4 or 5 gets your Google review link. A 1, 2, or 3 stays private — I alert you so you can make it right, and they never get the link.",
+    outcomes: [
+      "One text after each finished visit",
+      "Google link only on a happy score",
+      "Private alert on a low score",
+      "Consent and quiet hours checked first",
+    ],
+  },
+] as const;
+
 export const seoKeywords = [
   "Envoy Direct",
   "Jesse Envoy",
@@ -321,4 +368,6 @@ export const seoKeywords = [
   "online quote system",
   "website booking system",
   "quote request form",
+  "customer reactivation SMS",
+  "review request system",
 ];

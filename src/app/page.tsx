@@ -5,6 +5,7 @@ import { PageShell } from "@/components/page-shell";
 import { Process } from "@/components/process";
 import { StatBand } from "@/components/stat-band";
 import { StoryRail } from "@/components/story-rail";
+import { SystemsTeaser } from "@/components/systems-teaser";
 import { Work } from "@/components/work";
 
 export default function HomePage() {
@@ -17,9 +18,10 @@ export default function HomePage() {
         <Work showStory />
         <Process
           headingAs="h2"
-          nextHref="#about"
-          nextLabel="Next — who you're hiring"
+          nextHref="#systems-teaser"
+          nextLabel="Next — after the site"
         />
+        <SystemsTeaser />
         <About nextHref="#contact" nextLabel="Next — get a quote" />
         <Contact />
       </main>
