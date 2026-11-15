@@ -28,7 +28,18 @@ export const heroNameLines = ["Envoy", "Direct"] as const;
 export const heroCopy = {
   headline: "A website that brings in customers.",
   lede: "I build sites for local businesses across Orillia and Simcoe County — so people can find you, trust you, and call or book.",
+  price: "From CA$600",
+  primaryCta: { label: "Get a quote", href: "#contact" },
+  secondaryCta: { label: "See the work", href: "#work" },
 } as const;
+
+export const offerBullets = [
+  "Mobile-first site",
+  "Quote or booking on the page",
+  "Leads in one inbox",
+] as const;
+
+export const offerLocalNote = "One person in Orillia — no hand-offs.";
 
 export const storyChapters = [
   { id: "top", num: "01", label: "Start" },
@@ -38,11 +49,12 @@ export const storyChapters = [
   { id: "contact", num: "05", label: "Quote" },
 ] as const;
 
-export const homeSectionIds = storyChapters.map((chapter) => chapter.id);
+/** Sections the home nav highlights — keep in scroll order. */
+export const homeSectionIds = ["top", "work", "process", "about", "contact"] as const;
 
 export const workIntro = {
   heading: "Sites people actually use.",
-  lede: "Quotes and booking live on the page — not a separate app. Two local businesses, two ways in.",
+  lede: "Quotes and booking live on the page — not a separate app.",
 } as const;
 
 export const aboutHeading = "Orillia based, building for Simcoe County.";
@@ -58,7 +70,6 @@ export const remoteGigLink = {
 
 export const aboutParagraphs = [
   "I'm Jesse in Orillia — a one-person shop for Simcoe County businesses. I don't hand you off. I build sites people can actually use on their phone: clear services, real photos of your work, and a way to request a quote or book without phone tag.",
-  "What you get on the site: mobile-first pages, services that make sense to a stranger, a quote or booking path that's easy to tap, and every lead in one inbox. Optional: follow-up systems after launch (reactivation texts, review requests) if you already have customers.",
 ] as const;
 
 export const processIntro =
@@ -326,8 +337,7 @@ export const quoteBookingHow = {
 } as const;
 
 export const systemsTeaser = {
-  heading: "After the site is live.",
-  lede: "Optional follow-up systems invite past customers back or ask for reviews the right way — setup plus a modest monthly, with texting billed at cost. Same one-person shop.",
+  line: "After the site: optional follow-up systems (setup + monthly, SMS at cost).",
   ctaLabel: "See the systems",
   ctaHref: "/systems",
 } as const;
