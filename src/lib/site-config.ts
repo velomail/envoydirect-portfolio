@@ -27,14 +27,14 @@ export const heroNameLines = ["Envoy", "Direct"] as const;
 
 export const heroCopy = {
   headline: "A website that brings in customers.",
-  lede: "I build sites for local businesses across Orillia and Simcoe County — so people can find you, trust you, and call or book.",
+  lede: "For local service owners in Orillia and Simcoe County — a phone-usable site with clear services, real photos of your work, and a way to request a quote or book without phone tag.",
   price: "From CA$600",
   primaryCta: { label: "Get a quote", href: "#contact" },
-  secondaryCta: { label: "See the work", href: "#work" },
+  secondaryCta: { label: "See proof", href: "#work" },
 } as const;
 
 export const offerBullets = [
-  "Mobile-first site",
+  "Mobile-first pages",
   "Quote or booking on the page",
   "Leads in one inbox",
 ] as const;
@@ -53,8 +53,8 @@ export const storyChapters = [
 export const homeSectionIds = ["top", "work", "process", "about", "contact"] as const;
 
 export const workIntro = {
-  heading: "Sites people actually use.",
-  lede: "Quotes and booking live on the page — not a separate app.",
+  heading: "Sites that bring work in.",
+  lede: "Quote and booking on the page — so customers can act without phone tag.",
 } as const;
 
 export const aboutHeading = "Orillia based, building for Simcoe County.";

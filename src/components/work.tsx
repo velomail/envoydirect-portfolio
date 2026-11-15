@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ProjectShot } from "@/components/project-shot";
 import { Reveal } from "@/components/reveal";
 import { SectionFrame } from "@/components/section-frame";
 import { featuredProjects, workIntro, type Project } from "@/lib/site-config";
@@ -13,28 +13,39 @@ type WorkProps = {
   showStory?: boolean;
 };
 
-function FeaturedCase({ project }: { project: Project }) {
-  const hasLiveUrl = Boolean(project.appUrl);
-  const host = project.appUrl
-    ? project.appUrl.replace(/^https?:\/\//, "").replace(/\/.*$/, "")
-    : null;
+function hostFromUrl(url?: string) {
+  return url ? url.replace(/^https?:\/\//, "").replace(/\/.*$/, "") : null;
+}
+
+function PrimaryProof({ project }: { project: Project }) {
+  const host = hostFromUrl(project.appUrl);
 
   return (
-    <article className="grid gap-6 lg:grid-cols-12 lg:gap-10">
-      <div className="min-w-0 lg:col-span-7">
-        <h3 className="t-display text-[clamp(1.85rem,6vw,3.25rem)]">{project.name}</h3>
-        <p className="mt-3 text-[14px] text-muted-foreground">{project.tagline}</p>
-        <p className="mt-4 max-w-[32rem] text-[17px] leading-[1.5]">{project.description}</p>
-        {project.action ? (
-          <div className="mt-5 max-w-[32rem] border-t border-border pt-4">
-            <p className="text-[15px] font-medium">{project.action.title}</p>
-            <p className="mt-2 text-[15px] leading-[1.55] text-muted-foreground">
-              {project.action.body}
-            </p>
-          </div>
+    <article className="grid gap-5 sm:grid-cols-[minmax(0,10.5rem)_minmax(0,1fr)] sm:gap-6 md:grid-cols-[minmax(0,12rem)_minmax(0,1fr)]">
+      <div className="relative aspect-[16/10] overflow-hidden border border-border bg-panel">
+        <Image
+          src={project.previewImage}
+          alt={`${project.name} preview`}
+          fill
+          priority
+          quality={90}
+          sizes="(min-width: 768px) 192px, 100vw"
+          className="object-cover object-top"
+        />
+      </div>
+      <div className="min-w-0 self-center">
+        <h3 className="text-[1.15rem] font-semibold tracking-[-0.02em]">{project.name}</h3>
+        <p className="mt-2 max-w-[34rem] text-[15px] leading-[1.55] text-muted-foreground">
+          Homeowners request a quote on their phone — every lead lands in one inbox.
+        </p>
+        {project.testimonial ? (
+          <p className="mt-3 max-w-[34rem] text-[14px] leading-[1.5] text-muted-foreground">
+            <span className="text-foreground">&ldquo;{project.testimonial.quote}&rdquo;</span>
+            <span className="mt-1 block">{project.testimonial.attribution}</span>
+          </p>
         ) : null}
-        <p className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[14px]">
-          {hasLiveUrl ? (
+        <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[14px]">
+          {project.appUrl ? (
             <a
               href={project.appUrl}
               target="_blank"
@@ -49,60 +60,42 @@ function FeaturedCase({ project }: { project: Project }) {
           </Link>
         </p>
       </div>
-      <div className="order-first min-w-0 lg:order-none lg:col-span-5">
-        <ProjectShot src={project.previewImage} alt={`${project.name} preview`} priority />
-      </div>
-      {project.testimonial ? (
-        <blockquote className="max-w-[32rem] border-t border-border pt-5 lg:col-span-7">
-          <p className="text-[17px] leading-[1.55]">&ldquo;{project.testimonial.quote}&rdquo;</p>
-          <footer className="mt-3 text-[14px] text-muted-foreground">
-            {project.testimonial.attribution}
-          </footer>
-        </blockquote>
-      ) : null}
     </article>
   );
 }
 
-function CompactCase({ project }: { project: Project }) {
-  const hasLiveUrl = Boolean(project.appUrl);
-  const host = project.appUrl
-    ? project.appUrl.replace(/^https?:\/\//, "").replace(/\/.*$/, "")
-    : null;
+function QuietProof({ project }: { project: Project }) {
+  const host = hostFromUrl(project.appUrl);
 
   return (
-    <article className="mt-10 grid gap-5 border-t border-border pt-8 md:mt-12 md:grid-cols-[minmax(0,8rem)_minmax(0,1fr)] md:gap-8 md:pt-10 lg:mt-14">
-      <div className="min-w-0 max-w-[10rem] md:max-w-none">
-        <ProjectShot src={project.previewImage} alt={`${project.name} preview`} />
-      </div>
-      <div className="min-w-0">
-        <h3 className="text-[1.25rem] font-medium tracking-[-0.02em]">{project.name}</h3>
-        <p className="mt-2 max-w-[36rem] text-[15px] leading-[1.55] text-muted-foreground">
-          Booking-first site — large type, calm pages, and a clear way to book on the phone.
-        </p>
-        <p className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[14px]">
-          {hasLiveUrl ? (
-            <a
-              href={project.appUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link break-all sm:break-normal"
-            >
-              {host ?? "Live site"}
-            </a>
-          ) : null}
-          <Link href={`/work/${project.id}`} className="link">
-            Case study
-          </Link>
-        </p>
-      </div>
+    <article className="mt-5 border-t border-border pt-5 text-[15px] leading-[1.55] text-muted-foreground">
+      <p>
+        <span className="font-medium text-foreground">{project.name}</span>
+        <span aria-hidden="true"> — </span>
+        Booking on the page, large type, calm for people who aren&apos;t comfortable with tech.
+      </p>
+      <p className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[14px]">
+        {project.appUrl ? (
+          <a
+            href={project.appUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link break-all sm:break-normal"
+          >
+            {host ?? "Live site"}
+          </a>
+        ) : null}
+        <Link href={`/work/${project.id}`} className="link">
+          Case study
+        </Link>
+      </p>
     </article>
   );
 }
 
 export function Work({
   id = "work",
-  label = "Work",
+  label = "Proof",
   projects = featuredProjects,
   className,
   showStory = false,
@@ -115,18 +108,20 @@ export function Work({
       {showStory && featured ? (
         <>
           <Reveal>
-            <h2 className="t-title max-w-[32rem] text-[clamp(1.5rem,4vw,2rem)]">{workIntro.heading}</h2>
-            <p className="mt-3 max-w-[32rem] text-[17px] leading-[1.6] text-muted-foreground">
+            <h2 className="t-title max-w-[28rem] text-[clamp(1.45rem,3.8vw,1.9rem)]">
+              {workIntro.heading}
+            </h2>
+            <p className="mt-3 max-w-[32rem] text-[16px] leading-[1.55] text-muted-foreground">
               {workIntro.lede}
             </p>
           </Reveal>
-          <div className="mt-8 md:mt-10">
+          <div className="mt-7 md:mt-8">
             <Reveal>
-              <FeaturedCase project={featured} />
+              <PrimaryProof project={featured} />
             </Reveal>
             {secondary ? (
               <Reveal delay={60}>
-                <CompactCase project={secondary} />
+                <QuietProof project={secondary} />
               </Reveal>
             ) : null}
           </div>
@@ -135,9 +130,7 @@ export function Work({
         <div>
           {projects.map((project, index) => {
             const hasLiveUrl = Boolean(project.appUrl);
-            const host = project.appUrl
-              ? project.appUrl.replace(/^https?:\/\//, "").replace(/\/.*$/, "")
-              : null;
+            const host = hostFromUrl(project.appUrl);
 
             return (
               <Reveal key={project.id} delay={index * 80}>
@@ -180,11 +173,16 @@ export function Work({
                     </p>
                   </div>
                   <div className="order-first min-w-0 lg:order-none lg:col-span-5">
-                    <ProjectShot
-                      src={project.previewImage}
-                      alt={`${project.name} preview`}
-                      priority={index === 0}
-                    />
+                    <div className="relative aspect-[16/10] w-full overflow-hidden border border-border bg-panel">
+                      <Image
+                        src={project.previewImage}
+                        alt={`${project.name} preview`}
+                        fill
+                        priority={index === 0}
+                        sizes="(min-width: 1024px) 520px, 100vw"
+                        className="object-cover object-top"
+                      />
+                    </div>
                   </div>
                   {project.testimonial ? (
                     <blockquote className="max-w-[32rem] border-t border-border pt-5 md:pt-6 lg:col-span-7">

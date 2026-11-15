@@ -1,7 +1,6 @@
 import { About } from "@/components/about";
 import { Contact } from "@/components/contact";
 import { Hero } from "@/components/hero";
-import { Offer } from "@/components/offer";
 import { PageShell } from "@/components/page-shell";
 import { Process } from "@/components/process";
 import { SystemsTeaser } from "@/components/systems-teaser";
@@ -12,7 +11,6 @@ export default function HomePage() {
     <PageShell>
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <Offer />
         <Work showStory />
         <Process />
         <SystemsTeaser />
