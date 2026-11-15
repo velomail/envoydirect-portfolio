@@ -342,6 +342,8 @@ export const liveSystems = [
       "FAQ replies + booking link on interest",
       "Opt-outs honoured immediately",
     ],
+    href: "https://reactivation-web.vercel.app",
+    linkLabel: "See Reactivation",
   },
   {
     id: "review-engine",
@@ -355,6 +357,8 @@ export const liveSystems = [
       "Private alert on a low score",
       "Consent and quiet hours checked first",
     ],
+    href: null,
+    linkLabel: "Marketing page coming soon",
   },
 ] as const;
 

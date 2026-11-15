@@ -29,6 +29,22 @@ export function Systems() {
                 <p className="mt-3 text-[14px] text-muted-foreground">
                   {system.outcomes.join(" · ")}
                 </p>
+                {system.href ? (
+                  <p className="mt-3 text-[14px]">
+                    <a
+                      href={system.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link"
+                    >
+                      {system.linkLabel}
+                    </a>
+                  </p>
+                ) : (
+                  <p className="mt-3 text-[14px] text-muted-foreground">
+                    {system.linkLabel}
+                  </p>
+                )}
               </div>
             </div>
           </Reveal>
