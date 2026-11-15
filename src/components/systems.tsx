@@ -29,8 +29,8 @@ export function Systems() {
                 <p className="mt-3 text-[14px] text-muted-foreground">
                   {system.outcomes.join(" · ")}
                 </p>
-                {system.href ? (
-                  <p className="mt-3 text-[14px]">
+                <p className="mt-3 text-[14px]">
+                  {system.href ? (
                     <a
                       href={system.href}
                       target="_blank"
@@ -39,12 +39,10 @@ export function Systems() {
                     >
                       {system.linkLabel}
                     </a>
-                  </p>
-                ) : (
-                  <p className="mt-3 text-[14px] text-muted-foreground">
-                    {system.linkLabel}
-                  </p>
-                )}
+                  ) : (
+                    <span className="text-muted-foreground">{system.linkLabel}</span>
+                  )}
+                </p>
               </div>
             </div>
           </Reveal>

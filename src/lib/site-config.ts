@@ -329,7 +329,17 @@ export const systemsPage = {
   ctaHref: "/#contact",
 } as const;
 
-export const liveSystems = [
+export type LiveSystem = {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  outcomes: readonly string[];
+  href: string | null;
+  linkLabel: string;
+};
+
+export const liveSystems: readonly LiveSystem[] = [
   {
     id: "reactivation",
     name: "Reactivation",
@@ -360,7 +370,7 @@ export const liveSystems = [
     href: "https://review-engine-web.vercel.app/",
     linkLabel: "See Review Engine",
   },
-] as const;
+];
 
 export const seoKeywords = [
   "Envoy Direct",
