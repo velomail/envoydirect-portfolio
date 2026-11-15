@@ -33,6 +33,9 @@ export function SiteFooter() {
           <a href="/services" className="transition-colors hover:text-foreground">
             Services
           </a>
+          <a href="/systems" className="transition-colors hover:text-foreground">
+            Systems
+          </a>
           <a href="/blog" className="transition-colors hover:text-foreground">
             Blog
           </a>

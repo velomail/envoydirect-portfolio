@@ -9,6 +9,7 @@ const links = [
   { label: "Work", href: "/#work", section: "work" },
   { label: "About", href: "/#about", section: "about" },
   { label: "Services", href: "/services", section: null },
+  { label: "Systems", href: "/systems", section: null },
   { label: "Blog", href: "/blog", section: null },
   { label: "Contact", href: "/#contact", section: "contact" },
 ] as const;
@@ -37,9 +38,11 @@ export function SiteNav() {
               ? activeSection === link.section
               : link.href === "/blog"
                 ? pathname === "/blog" || pathname.startsWith("/blog/")
-                : link.href.startsWith("/") &&
-                  !link.href.includes("#") &&
-                  pathname === link.href;
+                : link.href === "/systems"
+                  ? pathname === "/systems" || pathname.startsWith("/systems/")
+                  : link.href.startsWith("/") &&
+                    !link.href.includes("#") &&
+                    pathname === link.href;
 
           return (
             <a
