@@ -219,13 +219,6 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
   }
-
-  .chrome-grid {
-    background-image:
-      linear-gradient(color-mix(in srgb, var(--border) 55%, transparent) 1px, transparent 1px),
-      linear-gradient(90deg, color-mix(in srgb, var(--border) 55%, transparent) 1px, transparent 1px);
-    background-size: 28px 28px;
-  }
 }
 
 @layer utilities {
