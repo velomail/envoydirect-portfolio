@@ -23,17 +23,21 @@ export function ProjectTypePicker({
         <p id={id} className="text-[13px] font-medium text-muted-foreground">
           {label}
         </p>
-        <div className="mt-3 border-t border-border" role="group" aria-labelledby={id}>
+        <div
+          className="mt-3 flex flex-wrap gap-2"
+          role="group"
+          aria-labelledby={id}
+        >
           {projectTypes.map((type) => (
             <button
               key={type}
               type="button"
               onClick={() => setProjectType(type)}
               className={cn(
-                "block w-full border-b border-border py-2.5 text-left text-[15px] transition-colors",
+                "rounded-md border px-3.5 py-2 text-[14px] transition-colors",
                 projectType === type
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground",
+                  ? "border-accent bg-accent/10 text-accent"
+                  : "border-border text-muted-foreground hover:border-accent/40 hover:text-foreground",
               )}
               aria-pressed={projectType === type}
             >
@@ -52,7 +56,7 @@ export function ProjectTypePicker({
             Which system?
           </p>
           <div
-            className="mt-3 border-t border-border"
+            className="mt-3 flex flex-wrap gap-2"
             role="group"
             aria-labelledby={`${id}-system`}
           >
@@ -62,10 +66,10 @@ export function ProjectTypePicker({
                 type="button"
                 onClick={() => setSystemInterest(interest)}
                 className={cn(
-                  "block w-full border-b border-border py-2.5 text-left text-[15px] transition-colors",
+                  "rounded-md border px-3.5 py-2 text-[14px] transition-colors",
                   systemInterest === interest
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground",
+                    ? "border-accent bg-accent/10 text-accent"
+                    : "border-border text-muted-foreground hover:border-accent/40 hover:text-foreground",
                 )}
                 aria-pressed={systemInterest === interest}
               >

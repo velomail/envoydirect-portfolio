@@ -1,6 +1,7 @@
 import { About } from "@/components/about";
 import { Contact } from "@/components/contact";
 import { Hero } from "@/components/hero";
+import { Make } from "@/components/make";
 import { PageShell } from "@/components/page-shell";
 import { Process } from "@/components/process";
 import { SystemsTeaser } from "@/components/systems-teaser";
@@ -11,8 +12,9 @@ export default function HomePage() {
     <PageShell>
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <Work showStory />
+        <Make />
         <Process />
+        <Work showStory />
         <SystemsTeaser />
         <About />
         <Contact />

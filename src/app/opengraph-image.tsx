@@ -17,26 +17,33 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "72px 80px",
-          background: "#eeeeea",
-          color: "#141414",
+          background: "#0B0D10",
+          color: "#E8EAED",
         }}
       >
-        <div style={{ fontSize: 22, fontWeight: 600, letterSpacing: "-0.01em", marginBottom: 28 }}>
+        <div
+          style={{
+            fontSize: 22,
+            fontWeight: 600,
+            letterSpacing: "-0.01em",
+            marginBottom: 28,
+            color: "#2DD4BF",
+          }}
+        >
           envoydirect
         </div>
         <div
           style={{
-            fontSize: 92,
-            fontWeight: 800,
-            lineHeight: 0.86,
+            fontSize: 84,
+            fontWeight: 700,
+            lineHeight: 0.95,
             letterSpacing: "-0.04em",
-            textTransform: "uppercase",
             maxWidth: 1040,
           }}
         >
-          Envoy Direct
+          Sites that bring work in. Systems that follow up.
         </div>
-        <div style={{ marginTop: 36, fontSize: 28, color: "#5c5c58", maxWidth: 720 }}>
+        <div style={{ marginTop: 36, fontSize: 26, color: "#9AA3B2", maxWidth: 720 }}>
           {siteConfig.seoDescription}
         </div>
       </div>

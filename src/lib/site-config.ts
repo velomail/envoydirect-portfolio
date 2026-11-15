@@ -2,12 +2,12 @@ export const siteConfig = {
   name: "Envoy Direct",
   brand: "ENVOY DIRECT",
   navBrand: "envoydirect",
-  title: "Envoy Direct — Websites for local businesses",
-  seoTitle: "Envoy Direct — Websites for local businesses",
+  title: "Envoy Direct — Sites and systems that bring work in",
+  seoTitle: "Envoy Direct — Sites and systems that bring work in",
   description:
-    "Envoy Direct is a one-person shop serving Orillia and Simcoe County. Jesse builds websites for local businesses so customers can find you, trust you, and call or book.",
+    "Envoy Direct builds websites and optional SMS follow-up systems so customers can find you, request a quote or book, and hear from you again — same person, no hand-offs.",
   seoDescription:
-    "Websites for local businesses in Orillia and Simcoe County. Jesse at Envoy Direct builds sites that bring in customers — one person, from first conversation to launch.",
+    "Websites and SMS systems that bring work in. Jesse at Envoy Direct builds phone-usable sites with quote or booking on the page, plus optional Reactivation and Review Engine.",
   email: "jesse03hiles@gmail.com",
   contactEmail: "jesse03hiles@gmail.com",
   location: "Orillia and Simcoe County",
@@ -26,11 +26,12 @@ export const siteConfig = {
 export const heroNameLines = ["Envoy", "Direct"] as const;
 
 export const heroCopy = {
-  headline: "A website that brings in customers.",
-  lede: "For local service owners in Orillia and Simcoe County — a phone-usable site with clear services, real photos of your work, and a way to request a quote or book without phone tag.",
-  price: "From CA$600",
+  brand: "Envoy Direct",
+  headline: "Sites that bring work in. Systems that follow up.",
+  lede: "I build phone-usable websites with quote or booking on the page — and optional SMS systems that win customers back or ask for the review. Same person from first message to launch.",
+  price: "Projects start at CA$600",
   primaryCta: { label: "Get a quote", href: "#contact" },
-  secondaryCta: { label: "See proof", href: "#work" },
+  secondaryCta: { label: "See work", href: "#work" },
 } as const;
 
 export const offerBullets = [
@@ -39,25 +40,62 @@ export const offerBullets = [
   "Leads in one inbox",
 ] as const;
 
-export const offerLocalNote = "One person in Orillia — no hand-offs.";
+export const offerLocalNote = "One person — no hand-offs.";
+
+export const makeOffers = [
+  {
+    id: "website",
+    name: "Website",
+    forWhom: "Local service businesses that need a clear front door",
+    what: "Phone-usable site with clear services, real photos of the work, and a way to request a quote or book without phone tag.",
+    price: "From CA$600",
+    href: "#contact",
+  },
+  {
+    id: "reactivation",
+    name: "Reactivation",
+    forWhom: "Shops with a quiet customer list",
+    what: "Consent-checked SMS that texts a few people a day inside quiet hours with a personal reason to come back.",
+    price: "CA$299 setup · CA$99/mo",
+    href: "/systems#reactivation",
+  },
+  {
+    id: "review-engine",
+    name: "Review Engine",
+    forWhom: "Businesses that finish jobs and want more reviews",
+    what: "One rating text after a visit. Happy scores get your Google link; low scores stay private so you can fix it.",
+    price: "CA$199 setup · CA$79/mo",
+    href: "/systems#review-engine",
+  },
+] as const;
 
 export const storyChapters = [
   { id: "top", num: "01", label: "Start" },
-  { id: "work", num: "02", label: "Work" },
-  { id: "process", num: "03", label: "Process" },
-  { id: "about", num: "04", label: "About" },
-  { id: "contact", num: "05", label: "Quote" },
+  { id: "make", num: "02", label: "Make" },
+  { id: "process", num: "03", label: "How" },
+  { id: "work", num: "04", label: "Proof" },
+  { id: "systems-teaser", num: "05", label: "Systems" },
+  { id: "about", num: "06", label: "About" },
+  { id: "contact", num: "07", label: "Quote" },
 ] as const;
 
 /** Sections the home nav highlights — keep in scroll order. */
-export const homeSectionIds = ["top", "work", "process", "about", "contact"] as const;
+export const homeSectionIds = [
+  "top",
+  "make",
+  "process",
+  "work",
+  "systems-teaser",
+  "about",
+  "contact",
+] as const;
 
 export const workIntro = {
-  heading: "Sites that bring work in.",
-  lede: "Quote and booking on the page — so customers can act without phone tag.",
+  heading: "Sites that get a quote or booking.",
+  lede: "Thin proof — outcome on the page, not a design reel.",
 } as const;
 
-export const aboutHeading = "Orillia based, building for Simcoe County.";
+export const aboutHeading = "One person. Sites and systems.";
 
 export const socialLinks = [
   { label: "LinkedIn", href: siteConfig.links.linkedin },
@@ -69,11 +107,11 @@ export const remoteGigLink = {
 } as const;
 
 export const aboutParagraphs = [
-  "I'm Jesse in Orillia — a one-person shop for Simcoe County businesses. I don't hand you off. I build sites people can actually use on their phone: clear services, real photos of your work, and a way to request a quote or book without phone tag.",
+  "I'm Jesse — I build websites people can finish on a phone, and optional SMS systems that continue the same job (bring in / win back / review). No hand-offs. You talk to the person who ships.",
 ] as const;
 
 export const processIntro =
-  "We start with what your customers need to do (call, quote, book). I scope that, then show you real pages in days — not a vague mock. We launch a live link, then refine copy and photos together so it fits your trade, not a template.";
+  "We start with what customers need to do (call, quote, book). I scope that, show real pages in days — not a vague mock — then launch a live link and refine copy and photos so it fits the trade.";
 
 export const processSteps = [
   {
@@ -94,7 +132,7 @@ export const processSteps = [
   {
     step: "04",
     title: "Refine",
-    description: "Copy and photos together so it fits your trade, not a template.",
+    description: "Copy and photos together so it fits the trade, not a template.",
   },
 ] as const;
 
@@ -145,7 +183,12 @@ export const faqItems = [
   {
     question: "What does a site usually cost?",
     answer:
-      "Most local business websites start from CA$600 fixed. Quote or booking on the site usually lands in the CA$800–1,200 range. You get a clear number after a short look at what you need — deposit to start, balance when we launch.",
+      "Most websites start from CA$600 fixed. Quote or booking on the site usually lands in the CA$800–1,200 range. You get a clear number after a short look at what you need — deposit to start, balance when we launch.",
+  },
+  {
+    question: "What about the SMS systems?",
+    answer:
+      "Reactivation is from CA$299 setup · CA$99/mo. Review Engine is from CA$199 setup · CA$79/mo. SMS is billed at cost. Nothing sends until you approve a dry-run.",
   },
   {
     question: "Do I need to know anything technical?",
@@ -179,6 +222,8 @@ export type Project = {
     attribution: string;
   };
   spotlight?: readonly { value: string; label: string }[];
+  /** One-line outcome for thin proof rows */
+  proofLine?: string;
 };
 
 export const featuredProjects: Project[] = [
@@ -194,6 +239,7 @@ export const featuredProjects: Project[] = [
     stackLine: "Next.js + Supabase",
     previewImage: "/gunning-grounds-preview.png",
     appUrl: "https://gunning-grounds.vercel.app",
+    proofLine: "Homeowners request a quote on their phone — every lead lands in one inbox.",
     spotlight: [
       { value: "Live", label: "Public marketing site" },
       { value: "Quotes", label: "Step-by-step form" },
@@ -229,6 +275,7 @@ export const featuredProjects: Project[] = [
     stackLine: "Next.js + Supabase",
     previewImage: "/stay-connected-preview.png",
     appUrl: "https://stay-connected-eta.vercel.app",
+    proofLine: "Booking on the page — large type, calm for people who aren't comfortable with tech.",
     spotlight: [
       { value: "Live", label: "Public site & booking" },
       { value: "Simple", label: "Large type, calm UI" },
@@ -337,14 +384,17 @@ export const quoteBookingHow = {
 } as const;
 
 export const systemsTeaser = {
-  line: "After the site: optional follow-up systems (setup + monthly, SMS at cost).",
+  heading: "Systems that follow up.",
+  lede: "After the site (or if you already have one): done-for-you SMS — quiet hours, consent, opt-outs. Setup + monthly; SMS at cost.",
   ctaLabel: "See the systems",
   ctaHref: "/systems",
+  buildingNext:
+    "What I'm building next: more quiet follow-up systems one client at a time — not a product dump on this page.",
 } as const;
 
 export const systemsPage = {
   heading: "Systems that follow up.",
-  lede: "After the website is live (or if you already have one), these are done-for-you SMS systems for local service businesses — quiet hours, consent, and opt-outs built in. Setup plus monthly; SMS at cost. Nothing sends until you approve a dry-run.",
+  lede: "After the website is live (or if you already have one), these are done-for-you SMS systems — quiet hours, consent, and opt-outs built in. Setup plus monthly; SMS at cost. Nothing sends until you approve a dry-run.",
   comingSoon:
     "More systems are on the way. If you need something adjacent — follow-ups after quotes, reminders, or another quiet workflow — ask. I build them one client at a time.",
   partnersNote:
@@ -413,13 +463,12 @@ export const liveSystems: readonly LiveSystem[] = [
 export const seoKeywords = [
   "Envoy Direct",
   "Jesse Envoy",
-  "small business website Orillia",
-  "small business website Simcoe County",
-  "contractor website",
-  "booking and quote website",
+  "business website",
+  "quote and booking website",
   "online quote system",
   "website booking system",
-  "quote request form",
   "customer reactivation SMS",
   "review request system",
+  "small business website Orillia",
+  "small business website Simcoe County",
 ];

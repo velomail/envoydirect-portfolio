@@ -23,7 +23,7 @@ export function Contact() {
   const followUp = contactFollowUps[projectType];
 
   const fieldClass =
-    "w-full border-0 border-b border-border bg-transparent px-0 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground";
+    "w-full rounded-md border border-border bg-panel px-3 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/70 focus:border-accent";
   const labelClass = "text-[13px] font-medium text-muted-foreground";
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -75,22 +75,25 @@ export function Contact() {
 
   return (
     <SectionFrame id="contact" label="Quote">
-      <h2 className="t-title text-[clamp(1.85rem,6vw,3.25rem)]">Get a quote.</h2>
-      <p className="mt-5 max-w-[32rem] text-[17px] leading-[1.6] text-muted-foreground md:mt-6">
-        Tell me what you need — website, system, or both. I&apos;ll reply within 48 hours with a
-        short scope and a clear CAD price.
+      <h2 className="t-title text-[clamp(1.75rem,5vw,2.75rem)]">Get a quote.</h2>
+      <p className="mt-4 max-w-[34rem] text-[16px] leading-[1.6] text-muted-foreground md:mt-5">
+        Website, system, or both. Reply within 48 hours with a short scope and a clear CAD price.
       </p>
 
       {status === "done" ? (
-        <div className="mt-8 md:mt-12">
-          <span className="jewel" aria-hidden="true" />
-          <h3 className="mt-4 t-title text-[1.5rem] md:text-[1.75rem]">Message sent</h3>
+        <div className="mt-8 rounded-lg border border-border bg-panel p-6 md:mt-10">
+          <span className="inline-block size-2.5 rounded-full bg-accent" aria-hidden="true" />
+          <h3 className="mt-4 t-title text-[1.4rem] md:text-[1.6rem]">Message sent</h3>
           <p className="mt-2 max-w-xs text-[15px] text-muted-foreground">
-            Thanks for reaching out. You&apos;ll hear back from me within 48 hours with next steps.
+            Thanks for reaching out. You&apos;ll hear back within 48 hours with next steps.
           </p>
         </div>
       ) : (
-        <form onSubmit={onSubmit} className="mt-8 max-w-[40rem] space-y-6 md:mt-12 md:space-y-8" noValidate>
+        <form
+          onSubmit={onSubmit}
+          className="mt-8 max-w-[40rem] space-y-5 md:mt-10 md:space-y-6"
+          noValidate
+        >
           <ProjectTypePicker id="contact-project-type" label="What are you looking for?" />
 
           <div>
@@ -105,7 +108,7 @@ export function Contact() {
               value={message}
               onChange={(event) => setMessage(event.target.value)}
               placeholder={followUp.messagePlaceholder}
-              className={`${fieldClass} mt-1 resize-none`}
+              className={`${fieldClass} mt-2 resize-none`}
             />
           </div>
 
@@ -122,42 +125,44 @@ export function Contact() {
                 value={siteUrl}
                 onChange={(event) => setSiteUrl(event.target.value)}
                 placeholder="https://your-site.com"
-                className={`${fieldClass} mt-1`}
+                className={`${fieldClass} mt-2`}
               />
             </div>
           ) : null}
 
-          <div>
-            <label htmlFor="name" className={labelClass}>
-              Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              required
-              autoComplete="name"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              placeholder="Your name"
-              className={`${fieldClass} mt-1`}
-            />
-          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label htmlFor="name" className={labelClass}>
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                required
+                autoComplete="name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                placeholder="Your name"
+                className={`${fieldClass} mt-2`}
+              />
+            </div>
 
-          <div>
-            <label htmlFor="email" className={labelClass}>
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="you@email.com"
-              className={`${fieldClass} mt-1`}
-            />
+            <div>
+              <label htmlFor="email" className={labelClass}>
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="you@email.com"
+                className={`${fieldClass} mt-2`}
+              />
+            </div>
           </div>
 
           {status === "error" ? (
@@ -167,11 +172,7 @@ export function Contact() {
           ) : null}
 
           <div>
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="inline-flex w-full items-center justify-center gap-2 bg-foreground px-6 py-3 text-[15px] font-medium text-background transition-colors hover:bg-accent disabled:opacity-70 sm:w-auto"
-            >
+            <button type="submit" disabled={status === "loading"} className="btn-primary disabled:opacity-70">
               {status === "loading" ? (
                 <>
                   <Loader2 className="size-4 animate-spin" />
@@ -210,7 +211,7 @@ export function Contact() {
           href={remoteGigLink.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline underline-offset-2 transition-colors hover:text-foreground"
+          className="underline underline-offset-2 transition-colors hover:text-accent"
         >
           {remoteGigLink.label}
         </a>
