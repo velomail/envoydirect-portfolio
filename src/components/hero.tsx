@@ -26,7 +26,7 @@ function HeroOutcome() {
                 alt=""
                 fill
                 priority
-                quality={85}
+                quality={90}
                 sizes="(min-width: 1024px) 18vw, 42vw"
                 className="object-cover object-top"
               />
