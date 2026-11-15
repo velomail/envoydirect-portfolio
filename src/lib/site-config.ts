@@ -107,7 +107,7 @@ export const remoteGigLink = {
 } as const;
 
 export const aboutParagraphs = [
-  "I'm Jesse — I build websites people can finish on a phone, and optional SMS systems that continue the same job (bring in / win back / review). No hand-offs. You talk to the person who ships.",
+  "I'm Jesse — I build websites people can actually use on their phone, and optional SMS systems that continue the same job (bring in / win back / review). No hand-offs. You talk to the person who ships.",
 ] as const;
 
 export const processIntro =
