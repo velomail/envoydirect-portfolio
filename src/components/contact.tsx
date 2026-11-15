@@ -5,10 +5,15 @@ import { Loader2 } from "lucide-react";
 import { ProjectTypePicker } from "@/components/project-type-picker";
 import { useProjectType } from "@/components/project-type-context";
 import { SectionFrame } from "@/components/section-frame";
-import { contactFollowUps, siteConfig, socialLinks } from "@/lib/site-config";
+import {
+  contactFollowUps,
+  remoteGigLink,
+  siteConfig,
+  socialLinks,
+} from "@/lib/site-config";
 
 export function Contact() {
-  const { projectType } = useProjectType();
+  const { projectType, systemInterest } = useProjectType();
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [name, setName] = useState("");
@@ -34,6 +39,7 @@ export function Contact() {
           name,
           email,
           projectType,
+          systemInterest: followUp.showSystemInterest ? systemInterest : undefined,
           message,
           siteUrl,
         }),
@@ -71,8 +77,8 @@ export function Contact() {
     <SectionFrame id="contact" label="Quote">
       <h2 className="t-title text-[clamp(1.85rem,6vw,3.25rem)]">Get a quote.</h2>
       <p className="mt-5 max-w-[32rem] text-[17px] leading-[1.6] text-muted-foreground md:mt-6">
-        You&apos;ve seen the work and how a project runs. Tell me what you need — I&apos;ll reply
-        within 48 hours with a price and next steps.
+        Tell me what you need — website, system, or both. I&apos;ll reply within 48 hours with a
+        short scope and a clear CAD price.
       </p>
 
       {status === "done" ? (
@@ -80,7 +86,7 @@ export function Contact() {
           <span className="jewel" aria-hidden="true" />
           <h3 className="mt-4 t-title text-[1.5rem] md:text-[1.75rem]">Message sent</h3>
           <p className="mt-2 max-w-xs text-[15px] text-muted-foreground">
-            Thanks for reaching out. You&apos;ll hear back from me within 48 hours.
+            Thanks for reaching out. You&apos;ll hear back from me within 48 hours with next steps.
           </p>
         </div>
       ) : (
@@ -175,7 +181,9 @@ export function Contact() {
                 "Request a quote"
               )}
             </button>
-            <p className="mt-3 text-[14px] text-muted-foreground">Reply within 48 hours.</p>
+            <p className="mt-3 text-[14px] text-muted-foreground">
+              Reply within 48 hours → short scope → written CAD price.
+            </p>
           </div>
         </form>
       )}
@@ -195,6 +203,17 @@ export function Contact() {
             {social.label}
           </a>
         ))}
+      </p>
+      <p className="mt-4 text-[13px] text-muted-foreground">
+        Looking for a remote MVP package?{" "}
+        <a
+          href={remoteGigLink.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 transition-colors hover:text-foreground"
+        >
+          {remoteGigLink.label}
+        </a>
       </p>
     </SectionFrame>
   );

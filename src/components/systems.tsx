@@ -21,6 +21,7 @@ export function Systems() {
               <div className="md:col-span-4">
                 <h2 className="text-[15px] font-medium">{system.name}</h2>
                 <p className="mt-1 text-[14px] text-muted-foreground">{system.tagline}</p>
+                <p className="mt-3 text-[14px] font-medium">{system.priceShape}</p>
               </div>
               <div className="md:col-span-8">
                 <p className="text-[15px] leading-[1.55] text-muted-foreground">
@@ -29,19 +30,23 @@ export function Systems() {
                 <p className="mt-3 text-[14px] text-muted-foreground">
                   {system.outcomes.join(" · ")}
                 </p>
-                <p className="mt-3 text-[14px]">
+                <p className="mt-3 text-[14px] leading-[1.55] text-muted-foreground">
+                  Live means: {system.doneMeans}
+                </p>
+                <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[14px]">
+                  <a href={system.askHref} className="link">
+                    {system.askLabel}
+                  </a>
                   {system.href ? (
                     <a
                       href={system.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="link"
+                      className="text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {system.linkLabel}
                     </a>
-                  ) : (
-                    <span className="text-muted-foreground">{system.linkLabel}</span>
-                  )}
+                  ) : null}
                 </p>
               </div>
             </div>

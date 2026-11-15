@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 import { createSupabaseAdmin } from "@/lib/supabase/admin";
-import { projectTypes } from "@/lib/site-config";
+import { projectTypes, systemInterests } from "@/lib/site-config";
 
 type ContactPayload = {
   name?: string;
   email?: string;
   projectType?: string;
+  systemInterest?: string;
   message?: string;
   siteUrl?: string;
 };
@@ -35,6 +36,7 @@ export async function POST(request: Request) {
   const name = body.name?.trim() ?? "";
   const email = body.email?.trim() ?? "";
   const projectType = body.projectType?.trim() ?? "";
+  const systemInterest = body.systemInterest?.trim() ?? "";
   const message = body.message?.trim() ?? "";
   const siteUrl = body.siteUrl?.trim() ?? "";
 
@@ -50,9 +52,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please select a valid project type." }, { status: 400 });
   }
 
+  const needsSystemInterest = projectType === "System" || projectType === "Both";
+  if (
+    needsSystemInterest &&
+    (!systemInterest ||
+      !systemInterests.includes(systemInterest as (typeof systemInterests)[number]))
+  ) {
+    return NextResponse.json({ error: "Please select which system you're asking about." }, { status: 400 });
+  }
+
   if (siteUrl && !isValidUrl(siteUrl)) {
     return NextResponse.json({ error: "Please enter a valid site link." }, { status: 400 });
   }
+
+  const storedProjectType =
+    needsSystemInterest && systemInterest
+      ? `${projectType} · ${systemInterest}`
+      : projectType;
 
   const storedMessage = siteUrl ? `Current site: ${siteUrl}\n\n${message}` : message;
 
@@ -68,7 +84,7 @@ export async function POST(request: Request) {
   const { error } = await supabase.from("contact_submissions").insert({
     name,
     email,
-    project_type: projectType,
+    project_type: storedProjectType,
     message: storedMessage,
   });
 
