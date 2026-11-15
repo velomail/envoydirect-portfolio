@@ -1,89 +1,38 @@
-import Image from "next/image";
-import { featuredProjects, heroCopy } from "@/lib/site-config";
+import Link from "next/link";
+import { heroCopy, makeOffers } from "@/lib/site-config";
 
-const proofSites = featuredProjects.slice(0, 2).map((project) => ({
-  id: project.id,
-  name: project.name,
-  image: project.previewImage,
-  outcome: project.id === "gunning-grounds" ? "Quote on phone" : "Book on page",
-}));
+const growthSystems = makeOffers.filter(
+  (offer) => offer.id === "reactivation" || offer.id === "review-engine",
+);
 
-function HeroOutcome() {
+function HeroSystemsPanel() {
   return (
-    <div aria-hidden="true" className="relative">
-      <div className="absolute -inset-6 -z-10 rounded-[1.25rem] bg-[radial-gradient(ellipse_at_70%_20%,color-mix(in_srgb,var(--accent)_14%,transparent)_0%,transparent_55%),radial-gradient(ellipse_at_20%_90%,color-mix(in_srgb,#4b5568_18%,transparent)_0%,transparent_50%)]" />
-
-      <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-        Sites that bring work in
+    <aside className="rounded-lg border border-border bg-panel px-5 py-6 sm:px-6 sm:py-7">
+      <p className="font-[family-name:var(--font-heading)] text-[1.15rem] font-semibold tracking-[-0.02em] text-foreground sm:text-[1.25rem]">
+        After the site: growth systems
+      </p>
+      <p className="mt-2 text-[14px] leading-[1.5] text-muted-foreground">
+        Optional SMS that keeps working after launch — win customers back or ask for the review.
       </p>
 
-      <div className="mt-3 grid grid-cols-2 gap-3">
-        {proofSites.map((site) => (
-          <div key={site.id} className="min-w-0">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-border bg-panel shadow-[0_0_0_1px_rgba(45,212,191,0.05)]">
-              <Image
-                src={site.image}
-                alt=""
-                fill
-                priority
-                quality={90}
-                sizes="(min-width: 1024px) 18vw, 42vw"
-                className="object-cover object-top"
-              />
-            </div>
-            <p className="mt-2 truncate text-[12px] font-medium text-foreground/90">
-              {site.name}
+      <ul className="mt-5 space-y-4 border-t border-border pt-5">
+        {growthSystems.map((offer) => (
+          <li key={offer.id}>
+            <p className="text-[14px] font-medium text-foreground">
+              {offer.name}
+              <span className="ml-2 font-normal text-muted-foreground">{offer.price}</span>
             </p>
-            <p className="mt-0.5 text-[11px] text-accent">{site.outcome}</p>
-          </div>
+            <p className="mt-1 text-[13px] leading-[1.45] text-muted-foreground">{offer.what}</p>
+          </li>
         ))}
-      </div>
+      </ul>
 
-      <div className="my-5 flex items-center gap-3" aria-hidden="true">
-        <div className="h-px flex-1 bg-border" />
-        <div className="flex size-7 items-center justify-center rounded-full border border-border bg-panel text-accent">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path
-              d="M6 1.5v7.5M6 9l-2.5-2.5M6 9l2.5-2.5"
-              stroke="currentColor"
-              strokeWidth="1.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-        <div className="h-px flex-1 bg-border" />
+      <div className="mt-6">
+        <Link href="/systems" className="btn-primary">
+          See systems
+        </Link>
       </div>
-
-      <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-        Systems that follow up
-      </p>
-
-      <div className="mt-3 space-y-2.5">
-        <div className="rounded-md border border-border bg-panel/90 px-3.5 py-3">
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-[12px] font-medium text-foreground">Reactivation</span>
-            <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-              SMS
-            </span>
-          </div>
-          <p className="mt-1.5 text-[13px] leading-snug text-muted-foreground">
-            Quiet-hours text with a personal reason to come back.
-          </p>
-        </div>
-        <div className="rounded-md border border-border bg-panel/90 px-3.5 py-3">
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-[12px] font-medium text-foreground">Review Engine</span>
-            <span className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-              SMS
-            </span>
-          </div>
-          <p className="mt-1.5 text-[13px] leading-snug text-muted-foreground">
-            Ask after the job — happy scores get your Google link.
-          </p>
-        </div>
-      </div>
-    </div>
+    </aside>
   );
 }
 
@@ -95,11 +44,11 @@ export function Hero() {
     >
       <div
         aria-hidden="true"
-        className="hero-glow pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_12%_-10%,color-mix(in_srgb,var(--accent)_16%,transparent)_0%,transparent_42%),radial-gradient(ellipse_at_88%_8%,color-mix(in_srgb,#4b5568_22%,transparent)_0%,transparent_48%),linear-gradient(180deg,color-mix(in_srgb,var(--panel)_55%,transparent)_0%,transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,color-mix(in_srgb,var(--panel)_40%,transparent)_0%,transparent_50%)]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
@@ -136,7 +85,7 @@ export function Hero() {
         </div>
 
         <div className="hero-in" style={{ animationDelay: "200ms" }}>
-          <HeroOutcome />
+          <HeroSystemsPanel />
         </div>
       </div>
     </section>
