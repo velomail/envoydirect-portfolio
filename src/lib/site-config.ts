@@ -92,7 +92,7 @@ export const homeSectionIds = [
 
 export const workIntro = {
   heading: "Sites that get a quote or booking.",
-  lede: "Thin proof — outcome on the page, not a design reel.",
+  lede: "Two live builds — outcome on the page, not a design reel.",
 } as const;
 
 export const aboutHeading = "One person. Sites and systems.";

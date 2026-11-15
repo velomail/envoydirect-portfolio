@@ -17,39 +17,41 @@ function hostFromUrl(url?: string) {
   return url ? url.replace(/^https?:\/\//, "").replace(/\/.*$/, "") : null;
 }
 
-function PrimaryProof({ project }: { project: Project }) {
+function shortQuote(quote: string, max = 110) {
+  const trimmed = quote.trim();
+  if (trimmed.length <= max) return trimmed;
+  const cut = trimmed.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > 60 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
+}
+
+function ProjectTile({ project, priority = false }: { project: Project; priority?: boolean }) {
   const host = hostFromUrl(project.appUrl);
 
   return (
-    <article className="grid gap-5 sm:grid-cols-[minmax(0,11rem)_minmax(0,1fr)] sm:gap-6 md:grid-cols-[minmax(0,12.5rem)_minmax(0,1fr)]">
+    <article className="flex h-full min-w-0 flex-col">
       <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-border bg-panel">
         <Image
           src={project.previewImage}
           alt={`${project.name} preview`}
           fill
-          priority
+          priority={priority}
           quality={90}
-          sizes="(min-width: 768px) 200px, 100vw"
+          sizes="(min-width: 768px) 45vw, 100vw"
           className="object-cover object-top"
         />
       </div>
-      <div className="min-w-0 self-center">
-        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <h3 className="font-[family-name:var(--font-heading)] text-[1.15rem] font-semibold tracking-[-0.02em]">
-            {project.name}
-          </h3>
-          <span className="text-[12px] uppercase tracking-[0.12em] text-muted-foreground">
-            Quote on phone
-          </span>
-        </div>
-        <p className="mt-2 max-w-[34rem] text-[15px] leading-[1.55] text-muted-foreground">
-          {project.proofLine ??
-            "Homeowners request a quote on their phone — every lead lands in one inbox."}
+      <div className="mt-4 flex min-w-0 flex-1 flex-col">
+        <h3 className="font-[family-name:var(--font-heading)] text-[1.05rem] font-semibold tracking-[-0.02em] sm:text-[1.1rem]">
+          {project.name}
+        </h3>
+        <p className="mt-2 text-[14px] leading-[1.5] text-muted-foreground sm:text-[15px]">
+          {project.proofLine ?? project.tagline}
         </p>
         {project.testimonial ? (
-          <p className="mt-3 max-w-[34rem] text-[14px] leading-[1.5] text-muted-foreground">
-            <span className="text-foreground/90">&ldquo;{project.testimonial.quote}&rdquo;</span>
-            <span className="mt-1 block">{project.testimonial.attribution}</span>
+          <p className="mt-3 text-[13px] leading-[1.45] text-muted-foreground">
+            <span className="text-foreground/85">&ldquo;{shortQuote(project.testimonial.quote)}&rdquo;</span>
+            <span className="mt-1 block text-[12px]">{project.testimonial.attribution}</span>
           </p>
         ) : null}
         <p className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[14px]">
@@ -72,36 +74,6 @@ function PrimaryProof({ project }: { project: Project }) {
   );
 }
 
-function QuietProof({ project }: { project: Project }) {
-  const host = hostFromUrl(project.appUrl);
-
-  return (
-    <article className="mt-5 border-t border-border pt-5 text-[15px] leading-[1.55] text-muted-foreground">
-      <p>
-        <span className="font-medium text-foreground">{project.name}</span>
-        <span aria-hidden="true"> — </span>
-        {project.proofLine ??
-          "Booking on the page, large type, calm for people who aren't comfortable with tech."}
-      </p>
-      <p className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[14px]">
-        {project.appUrl ? (
-          <a
-            href={project.appUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link break-all sm:break-normal"
-          >
-            {host ?? "Live site"}
-          </a>
-        ) : null}
-        <Link href={`/work/${project.id}`} className="link">
-          Case study
-        </Link>
-      </p>
-    </article>
-  );
-}
-
 export function Work({
   id = "work",
   label = "Proof",
@@ -109,30 +81,24 @@ export function Work({
   className,
   showStory = false,
 }: WorkProps) {
-  const [featured, ...rest] = projects;
-  const secondary = rest[0];
-
   return (
-    <SectionFrame id={id} label={label} className={cn(className, "lg:pt-20")}>
-      {showStory && featured ? (
+    <SectionFrame id={id} label={label} className={cn(className, "lg:pt-16")}>
+      {showStory ? (
         <>
           <Reveal>
-            <h2 className="t-title max-w-[28rem] text-[clamp(1.45rem,3.8vw,1.9rem)]">
+            <h2 className="t-title max-w-[26rem] text-[clamp(1.2rem,2.6vw,1.5rem)]">
               {workIntro.heading}
             </h2>
-            <p className="mt-3 max-w-[32rem] text-[16px] leading-[1.55] text-muted-foreground">
+            <p className="mt-2 max-w-[30rem] text-[14px] leading-[1.5] text-muted-foreground sm:text-[15px]">
               {workIntro.lede}
             </p>
           </Reveal>
-          <div className="mt-7 md:mt-8">
-            <Reveal>
-              <PrimaryProof project={featured} />
-            </Reveal>
-            {secondary ? (
-              <Reveal delay={60}>
-                <QuietProof project={secondary} />
+          <div className="mt-6 grid gap-8 sm:mt-7 md:grid-cols-2 md:gap-8 lg:gap-10">
+            {projects.slice(0, 2).map((project, index) => (
+              <Reveal key={project.id} delay={index * 60}>
+                <ProjectTile project={project} priority={index === 0} />
               </Reveal>
-            ) : null}
+            ))}
           </div>
         </>
       ) : (
